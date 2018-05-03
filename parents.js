@@ -90,7 +90,6 @@ const choice_p=()=>
 
 	else if(chosen=="notifications")
 	{
-<<<<<<< HEAD
 		return React.createElement('div',{className:'remark_body_p'},
 			React.createElement('form',{},
 				React.createElement('textarea',{className:"t_area",rows:"5",cols:"50",onChange:ev=>{
@@ -129,7 +128,6 @@ const choice_p=()=>
 			)
 
 		)
-=======
 		return React.createElement('div',{className:'remark_body_p t_area'},
 			noti_temp.map(s=>{
 				return React.createElement('div',{className:'rem_help'},
@@ -141,7 +139,6 @@ const choice_p=()=>
 
 			})
 			)
->>>>>>> d0b7f675185d0c60471d067b7093005e8bf44bba
 	}
 }
 
