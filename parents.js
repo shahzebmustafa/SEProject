@@ -73,10 +73,11 @@ const choice_p=()=>
 		return React.createElement('div',{className:'remark_body_p t_area'},
 			remarks_temp.map(s=>{
 				return React.createElement('div',{className:'rem_help'},
+/*					React.createElement('div',{className:'img_rem_div'},*/
 					rem_type(s.type),
-					React.createElement('text',{},"From: "+s.from),
+					React.createElement('text',{className:'remarksBody'},"From: "+s.from),
 					React.createElement('br'),
-					React.createElement('text',{},s.remark))
+					React.createElement('text',{className:'remarksBody'},s.remark))
 
 			})
 			)
