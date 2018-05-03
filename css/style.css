@@ -944,57 +944,34 @@ line-height: 370px;
   right: 2.5%;
   resize: both;
   border-radius: 10px;
-  display: inline-block;
-  font-family: 'Kanit', sans-serif;
   /*z-index: 0;*/
   /*display: inline-block;*/
 }
 
 .attendance_date{
-  font-size: 200px;
-  color: white;
-<<<<<<< HEAD
-  height: 10%;
-  top: 32%; 
-  display: block;
-  
-  /*font-family: 'Kanit', sans-serif;*/
-  text-align: center;
-  margin-top: auto;
-  font-weight: 1000;
-  position: relative;
-  max-width: 100%
 
-  /*width: 50%;*/
-=======
+  color: white;
 /*  width: 50%;*/
   top: 25%; 
   position: relative;
   /*position: relative;*/
 /*  display: block;*/
->>>>>>> d0b7f675185d0c60471d067b7093005e8bf44bba
 /*  margin-left: auto;
   margin-left: auto;*/
+/*  font-weight: 700;*/
+  font-family: 'Kanit', sans-serif;
 
 }
 
 .attendance_month{
-  font-size: 100 px;
-  height: 10%;
-  top: 35%;
+  font-size: 100%;
   color: white;
-  display: block;
-  font-family: 'Kanit', sans-serif;
-  text-align: center;
-  margin-top: auto;
-  font-weight: 700;
+  width: 50%;
+  top: 25%;
   position: relative;
-  max-width: 100%
-  
-  
-  /*width: 50%;*/
-  /*top: 25%;*/
   /*margin: 0 auto;*/
+  font-weight: 700;
+  font-family: 'Kanit', sans-serif;
  
 }
 
@@ -1005,72 +982,12 @@ line-height: 370px;
   bottom:0%;
   left: 0%;
   position: absolute;
-  resize: both;
+  /*right: 2.5%;*/
+/*  resize: both;*/
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
-}
-
-.calenderRight{
-  background:rgba(0,0,0,0.5);
-  width: 65%;
-  height: 100%;
-  bottom:0%;
-  right: 0%;
-  position: absolute;
-  resize: both;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+=======
   display: block;
-}
-
-.attendance_year {
-  color: #E8E8E8;
-  font-size: 30px;
-  display: inline-block;
-  margin-left: 1%;
-
-  /*float: right;
-  position: relative;
-  right: 5%;
-  top: 0%;
-  font-weight: bold;*/
-}
-
-.attendance_triangle-left{
-  border-top: 5px solid transparent;
-  border-right: 10px solid #E8E8E8;
-  border-bottom: 5px solid transparent;
-  display: inline-block;
-  margin-left: 80%;
-/*  float: right;
-  position: relative;
-  margin-top: 2.75%;
-  right: 13.5%;
-  top: 0%;*/
-}
-
-.attendance_triangle-right {
-
-  border-top: 5px solid transparent;
-  border-left: 10px solid #E8E8E8;
-  border-bottom: 5px solid transparent;
-  display: inline-block;
-  margin-left: 1%;
- /* float: right;
-  left: 3.5%;
-  position: relative;
-  margin-top: 2.75%;
-  
-  left: s10%;
-  top: 0%;*/
-}
-
-
-.attendance_triangle-right:hover{
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
-
-}
-.attendance_triangle-left:hover{
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
-
+  position:relative;
+>>>>>>> 41d3e73c1ef81b145d7268762fce50c365474c9d
 }

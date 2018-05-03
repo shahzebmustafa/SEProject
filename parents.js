@@ -90,44 +90,6 @@ const choice_p=()=>
 
 	else if(chosen=="notifications")
 	{
-		return React.createElement('div',{className:'remark_body_p'},
-			React.createElement('form',{},
-				React.createElement('textarea',{className:"t_area",rows:"5",cols:"50",onChange:ev=>{
-					rem=ev.target.value
-				}},"Write notifications here..."),
-				React.createElement("select",{className:"selectStudent2"
-					,onChange:ev=>{
-					curr_cl=ev.target.value
-					admin_screen()
-				}},
-				React.createElement("option",{},curr_cl),
-				React.createElement("optgroup",{label:"Classes"},
-					React.createElement("option",{value:"All Classes"},"All Classes"),
-					total_classes_arr.map((x,i)=>
-						React.createElement("option",{value:"Class "+x},"Class "+x)	
-						)
-					)),
-				React.createElement("div",{},
-					React.createElement("button",{className:"blue_button rem_button",name:"send", type:"submit",onClick:ev=>{
-					ev.preventDefault()
-					console.log(rem)//send remarks to server!!!!!!!!!!!!!!
-				}},"Send"))))
-	}
-	else if(chosen == "attendance")
-	{
-		return React.createElement('div',{className : 'attendance_body_p'},
-			
-			React.createElement('div',{className : 'calenderLeft'},
-				React.createElement('h1',{className: 'attendance_date'},todaysDate.date),
-				React.createElement('h1',{className:'attendance_month'},todaysDate.month)
-			),
-			React.createElement('div',{className : 'calenderRight'},
-				React.createElement('div',{className:'attendance_triangle-left'}),
-				React.createElement('h1',{className:'attendance_year'},todaysDate.year),
-				React.createElement('div',{className:'attendance_triangle-right'}),
-			)
-
-		)
 		return React.createElement('div',{className:'remark_body_p t_area'},
 			noti_temp.map(s=>{
 				return React.createElement('div',{className:'rem_help'},
@@ -139,7 +101,6 @@ const choice_p=()=>
 
 			})
 			)
-
 	}
 }
 
