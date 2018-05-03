@@ -6,6 +6,7 @@ let remarks="b"
 let manage_acc="b"
 let attendance = "b"
 let chosen=""
+let results = "b"
 
 let rem_create="none"
 accounts = ["Parent", "Teacher"]
@@ -20,6 +21,7 @@ const id_click=()=>{
 	remarks="b"
 	manage_acc="b"
 	attendance = "b"
+	results="b"
 }
 
 let total_classes_arr=[1,2,3]
@@ -40,6 +42,7 @@ const admin_screen = ()=>{
 				React.createElement('div',{id:'home_back'}),
 				React.createElement('div',{className:"striptop"},
 					React.createElement('text',{className:'acc_set'},'Account Settings'),
+					React.createElement("img",{type:"image",className: "set_pic",src:"\\settings-cog.png"}),
 					React.createElement("button",{className:"log_out",onClick:ev=>{
 						login()
 					}},"Log out")),
@@ -72,6 +75,7 @@ const admin_screen = ()=>{
 			  	React.createElement("button",{ className: manage_acc,onClick:ev=>{
 					id_click()
 					manage_acc="c"
+					rem_create="none"
 					chosen="manage_acc"
 					admin_screen()
 				} },"Manage Account")
@@ -166,7 +170,7 @@ const choice=()=>
 	else if(chosen=="attendance")
 	{
 		return React.createElement('div',{className:'displayPanel'},
-			React.createElement('text',{className:'hTextCenter largeFont heading'},'Attendance'),
+			React.createElement('h1',{className:'head_att'},'Attendance'),
 			React.createElement('div',{className:'attendancePanel'},
 				React.createElement('div',{className:'rno'},
 					students.map(s=>{
@@ -186,16 +190,25 @@ const choice=()=>
 					students.map(s=>{
 						return React.createElement('div',{style:{className: 'blackBorder'}},
 							React.createElement('text',null,s.att),
-							React.createElement("input",{type:"radio"})
+							React.createElement("input",{radio_ch_un:0,id:s.rNumber,type:"radio",onClick:ev=>{
+								if(ev.target.radio_ch_un==1){
+									ev.target.radio_ch_un=0
+									document.getElementById(ev.target.id).checked=false
+								}
+								else{
+									ev.target.radio_ch_un=1
+								}
+								
+							}})
 						)
 					})
 				)
 			),
 			React.createElement('div',{className:'attendanceButtons'},
-				React.createElement('div',{className:"dateI"},
+				React.createElement('div',{},
 					React.createElement('text',{className:'date'},'Date'),
 					React.createElement('br'),
-					React.createElement('input',{type:'input',placeholder:'dd/mm/yyyy',className:'dateInput'})),	
+					React.createElement('input',{type:'input',placeholder:'dd/mm/yyyy',className:'dateI'})),	
 				React.createElement("div",{ className: "dropdown"},
 		  			React.createElement("button",{ className: "dropbtn" },"Select Class"),
 		  			React.createElement("div",{ className: "dropdown-content" },
@@ -205,9 +218,9 @@ const choice=()=>
 		  			)
 				),
 				React.createElement('br'),
-				React.createElement('input',{type:'input',className:'addHolidayInput',placeholder:'dd/mm/yyyy'}),
+				React.createElement('input',{type:'input',className:'dateI i',placeholder:'dd/mm/yyyy'}),
 				React.createElement('br'),
-				React.createElement('input',{type:'submit',value: 'Add Holiday',className:'blue_button'})
+				React.createElement('button',{className:'addHolidayButton'},"Add Holiday")
 			)
 		)
 	}
@@ -232,24 +245,28 @@ const choice=()=>
 		else if (rem_create=="c"){
 			//return create()
 			return React.createElement('div',{className:"removeBox"},
-							React.createElement('div', {className: "popUp"},
-								React.createElement('text',{className: 'create_h'}, 'Create New Account'),
-								React.createElement('div',{className:"smallpopUp"},
+					React.createElement('div', {className: "popUp"},
+						React.createElement('div',{className:"smallpopUp"},
+						React.createElement('text',{className: 'create_h'}, 'Create New Account'),
+						React.createElement("img",{type:"image",className: "photo",src:"\\images.png"}),
+						React.createElement("button", {className: 'generateButton_photo'}, "Browse"),
+						React.createElement('br'),
+						React.createElement('input',{ type: "text", className: "form", placeholder: "First Name" }),
+						React.createElement('input',{ type: "text", className: "form2", placeholder: "Second Name" }),
+						React.createElement('br'),
+						React.createElement('input',{ type: "email", className: "form", placeholder: "Email Address" }),
+						React.createElement('input',{ type: "text", className: "form2", placeholder: "Grade" }),
+						React.createElement('br'),
+						React.createElement('input',{ type: "text", className: "form5", placeholder: "Username" }),
+						React.createElement("button", {className: 'generateButton_user'}, "Generate"),
+						React.createElement('br'),
+						React.createElement('input',{ type: "text", className: "form6", placeholder: "Password" }),
+						React.createElement("button", {className: 'generateButton_pass'}, "Generate"),
+						React.createElement('br'),
+						React.createElement("button", {className: 'generateButton_cre'}, "Create")
 
-									React.createElement('input',{ type: "text", className: "form", placeholder: "First Name" }),
-									React.createElement('input',{ type: "text", className: "form2", placeholder: "Second Name" }),
-									React.createElement('input',{ type: "email", className: "form3", placeholder: "Email Address" }),
-									React.createElement('input',{ type: "text", className: "form4", placeholder: "Grade" }),
-									React.createElement('input',{ type: "text", className: "form5", placeholder: "Username" }),
-									React.createElement('input',{ type: "password", className: "form6", placeholder: "Password" }),
-									React.createElement("button", {className: 'generate_button generateButton'}, "Generate"),
-									React.createElement("button", {className: 'generate_button2 generateButton2'}, "Generate"),
-									React.createElement("button", {className: 'generate_button3 generateButton3'}, "Create"),
-									React.createElement("img",{type:"image",className: "photo",src:"\\images.png"}),
-									React.createElement("button", {className: 'generate_button4 generateButton4'}, "Browse"),
-
-									))
-							);
+						))
+					);
 		  }
 
 
