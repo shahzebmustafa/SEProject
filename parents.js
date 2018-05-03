@@ -1,6 +1,9 @@
 todaysDate = {'date':29,'day':"Monday",'month':"NOVEMBER",'year':2017}
 
-let remarks_temp = [{'from':'Admin','type':'bad','remark':'Testing Remarks!'}]
+let remarks_temp = [{'from':'Admin','subject':'SE','date':'4th May 2018','type':'bad','remark':'Testing Remarks!'},{'from':'Rahij','subject':'CS','date':'4th May 2018','type':'good','remark':'Testing Remarks!'},{'from':'Shahzeb','subject':'Chem','date':'4th May 2018','type':'bad','remark':'kill me!'}]
+let noti_temp = [{'date':'4th May 2018','noti':'Testing Remarks!'},{'date':'4th May 2018','noti':'HELLO!'}]
+
+
 const parent_screen = ()=>{
 
 	var Parent = React.createClass({
@@ -73,11 +76,13 @@ const choice_p=()=>
 		return React.createElement('div',{className:'remark_body_p t_area'},
 			remarks_temp.map(s=>{
 				return React.createElement('div',{className:'rem_help'},
-/*					React.createElement('div',{className:'img_rem_div'},*/
-					rem_type(s.type),
+					React.createElement('div',{className:'img_rem_div'},
+					rem_type(s.type)),
 					React.createElement('text',{className:'remarksBody'},"From: "+s.from),
 					React.createElement('br'),
-					React.createElement('text',{className:'remarksBody'},s.remark))
+					React.createElement('text',{className:'remarksBody'},"Date: "+s.date),
+					React.createElement('br'),
+					React.createElement('text',{className:'remarksBody'},s.subject+": "+s.remark))
 
 			})
 			)
@@ -85,6 +90,7 @@ const choice_p=()=>
 
 	else if(chosen=="notifications")
 	{
+<<<<<<< HEAD
 		return React.createElement('div',{className:'remark_body_p'},
 			React.createElement('form',{},
 				React.createElement('textarea',{className:"t_area",rows:"5",cols:"50",onChange:ev=>{
@@ -123,6 +129,19 @@ const choice_p=()=>
 			)
 
 		)
+=======
+		return React.createElement('div',{className:'remark_body_p t_area'},
+			noti_temp.map(s=>{
+				return React.createElement('div',{className:'rem_help'},
+					React.createElement('div',{className:'img_rem_div'},
+					React.createElement("img",{type:"image",className: "warn",src:"\\bell.png"})),
+					React.createElement('text',{className:'remarksBody'},"Date: "+s.date),
+					React.createElement('br'),
+					React.createElement('text',{className:'remarksBody'},s.noti))
+
+			})
+			)
+>>>>>>> d0b7f675185d0c60471d067b7093005e8bf44bba
 	}
 }
 
