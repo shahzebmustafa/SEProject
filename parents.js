@@ -1,4 +1,4 @@
-
+todaysDate = {'date':29,'day':"Monday",'month':"NOVEMBER",'year':2017}
 
 let remarks_temp = [{'from':'Admin','type':'bad','remark':'Testing Remarks!'}]
 const parent_screen = ()=>{
@@ -107,5 +107,18 @@ const choice_p=()=>
 					console.log(rem)//send remarks to server!!!!!!!!!!!!!!
 				}},"Send"))))
 	}
+	else if(chosen == "attendance")
+	{
+		return React.createElement('div',{className : 'attendance_body_p'},
+			React.createElement('div',{className : 'calenderLeft'},
+				React.createElement('text',{className: 'attendance_date'},todaysDate.date),
+				React.createElement('div',{className:'attendance_month'},todaysDate.month)
+			)
+		)
+	}
+}
+
+int main(){
+	
 }
 //admin_screen();

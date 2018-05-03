@@ -154,7 +154,9 @@
     top: 0;
     left: 0;
     background:rgba(255,255,255,0.5);
-    overflow-x:scroll;
+    /*overflow-x:scroll;*/
+    /*overflow-y: scroll;*/
+    overflow: auto;
     /*padding-top: 20px;*/
 }
 
@@ -895,4 +897,58 @@ line-height: 370px;
   z-index: 0;
   position: relative;
 
+}
+
+/*****************************************Parent Attendance******************************/
+
+.attendance_body_p{
+  background:rgba(255,255,255,0.5);
+  min-width: 75%;
+  height: 62.5%;
+  bottom:15%;
+  position: fixed;
+  right: 2.5%;
+  resize: both;
+  border-radius: 10px;
+  /*z-index: 0;*/
+  /*display: inline-block;*/
+}
+
+.attendance_date{
+
+  color: white;
+/*  width: 50%;*/
+  top: 25%; 
+  /*position: relative;*/
+/*  display: block;*/
+/*  margin-left: auto;
+  margin-left: auto;*/
+/*  font-weight: 700;*/
+  font-family: 'Kanit', sans-serif;
+
+}
+
+.attendance_month{
+  font-size: 100%;
+  color: white;
+  width: 50%;
+  top: 25%;
+  position: relative;
+  /*margin: 0 auto;*/
+  font-weight: 700;
+  font-family: 'Kanit', sans-serif;
+ 
+}
+
+.calenderLeft{
+  background:rgba(0,140,186,0.5);
+  width: 35%;
+  height: 100%;
+  bottom:0%;
+  left: 0%;
+  position: absolute;
+  /*right: 2.5%;*/
+/*  resize: both;*/
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
