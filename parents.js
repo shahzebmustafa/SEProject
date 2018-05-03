@@ -119,7 +119,4 @@ const choice_p=()=>
 	}
 }
 
-int main(){
-	
-}
 //admin_screen();
