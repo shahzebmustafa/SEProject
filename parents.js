@@ -111,10 +111,17 @@ const choice_p=()=>
 	else if(chosen == "attendance")
 	{
 		return React.createElement('div',{className : 'attendance_body_p'},
+			
 			React.createElement('div',{className : 'calenderLeft'},
-				React.createElement('text',{className: 'attendance_date'},todaysDate.date),
-				React.createElement('div',{className:'attendance_month'},todaysDate.month)
+				React.createElement('h1',{className: 'attendance_date'},todaysDate.date),
+				React.createElement('h1',{className:'attendance_month'},todaysDate.month)
+			),
+			React.createElement('div',{className : 'calenderRight'},
+				React.createElement('div',{className:'attendance_triangle-left'}),
+				React.createElement('h1',{className:'attendance_year'},todaysDate.year),
+				React.createElement('div',{className:'attendance_triangle-right'}),
 			)
+
 		)
 	}
 }
