@@ -952,7 +952,6 @@ line-height: 370px;
 .attendance_date{
   font-size: 200px;
   color: white;
-<<<<<<< HEAD
   height: 10%;
   top: 32%; 
   display: block;
@@ -963,18 +962,6 @@ line-height: 370px;
   font-weight: 1000;
   position: relative;
   max-width: 100%
-
-  /*width: 50%;*/
-=======
-/*  width: 50%;*/
-  top: 25%; 
-  position: relative;
-  /*position: relative;*/
-/*  display: block;*/
->>>>>>> d0b7f675185d0c60471d067b7093005e8bf44bba
-/*  margin-left: auto;
-  margin-left: auto;*/
-
 }
 
 .attendance_month{
