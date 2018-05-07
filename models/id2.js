@@ -48,9 +48,9 @@ var idSchema=mongoose.Schema({
 	notifications:[{
 		notification: String,
 		read:Number
-	}],
+	}]
 
-	result: {{}}
+	//result: {{}}
 })
 
 var ID = module.exports = mongoose.model('ID',idSchema);
