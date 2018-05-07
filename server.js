@@ -11,6 +11,8 @@ var mongoose= require('mongoose')
 
 
 ID=require('./models/id2')
+CLASS=require('./models/class')
+
 
 mongoose.connect('mongodb://localhost/usernames')
 
@@ -37,6 +39,25 @@ const remarks = (toUsername,remark,from)=>{
 	})
 } 
 
+const createClass=(grade,classTeacher,rollnoArray)=>{
+	CLASS.addClass({'grade':grade,'classTeacher':classTeacher,'students':rollnoArray},()=>{
+ 		console.log('class added')
+	})
+
+}
+
+const addStudentToClass=(className,rollno)=>{
+	CLASS.addStudent(className,rollno,()=>{
+		console.log('student added')
+	})
+}
+const notifications = (toUsername,remark)=>{
+	ID.sendNotification(toUsername,remark,()=>{
+		console.log("notification sent")
+	})
+}
+//notifications("19100136","fee challan due")
+
 const sendUsernamePassword = (u,p,callback)=>{
 	var check=0
 	ID.getUserByUsername(u,function(err,id){
@@ -59,6 +80,57 @@ const sendUsernamePassword = (u,p,callback)=>{
 			callback(0)
 	})
 }
+
+const getStudentsbyClass = (grade)=>{
+	CLASS.getStudents(grade,function(err,rollnoArray){
+		if (err){
+			console.log('Error')
+		}
+		else{
+			rollnoArray=rollnoArray[0]
+			rollnoArray=rollnoArray['students']
+			console.log(rollnoArray)
+		}
+	})
+}
+//addStudentToClass('11C','1910004')
+getStudentsbyClass('11C')
+
+const getRemarks = (username)=>{
+	ID.getRemarks(username,function(err,remarksArray){
+
+		if (err){
+			console.log('NOT FOUND')
+		}
+		else{
+			//remarksArray.map(i=>console.log(i))
+			remarksArray=remarksArray[0]
+			remarksArray=remarksArray['remarks']
+			console.log(remarksArray) //////////////////////////// this is the remarks array of the user
+			//id.map(i=>console.log(i))
+		}
+	})
+}
+
+const getNotification = (username)=>{
+	ID.getNotifications(username,function(err,notificationsArray){
+
+		if (err){
+			console.log('NOT FOUND')
+		}
+		else{
+			//notificationsArray.map(i=>console.log(i))
+			notificationsArray=notificationsArray[0]
+			notificationsArray=notificationsArray['notifications']
+			console.log(notificationsArray) //////////////////////////// this is the remarks array of the user
+			//id.map(i=>console.log(i))
+		}
+	})
+}
+
+//getNotification('19100136')
+
+
 
 const readfile = f => new Promise((resolve,reject)=>
 	fs.readFile(f,(e,d)=>e?reject(e):resolve(d)))
