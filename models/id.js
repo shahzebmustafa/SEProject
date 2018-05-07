@@ -1,14 +1,17 @@
 var mongoose=require('mongoose');
 
-var idSchema=mongoose.Schema({
-	username:{
+var classes=mongoose.Schema({
+	grade:{
 		type: String,
 		require:true
 	},
-	password:{
+	classTeacher:{
 		type: String,
 		require:true
-	}
+	},
+	students:[{
+		rollnumber: String
+	}]
 })
 
 var ID = module.exports = mongoose.model('ID',idSchema);

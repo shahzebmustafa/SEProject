@@ -48,7 +48,9 @@ var idSchema=mongoose.Schema({
 	notifications:[{
 		notification: String,
 		read:Number
-	}]
+	}],
+
+	result: {{}}
 })
 
 var ID = module.exports = mongoose.model('ID',idSchema);
@@ -72,7 +74,16 @@ module.exports.addID = function(id, callback){
 module.exports.sendRemarks = function(username,remark,from,callback){
 	ID.update({username: `${username}`},{$push:{remarks:{remark:`${remark}`,read:0,from:`${from}`}}},callback)
 }
-/*
+
+module.exports.getRemarks = function(username,callback){
+	ID.find({'username':`${username}`},{'remarks':1,_id:0},callback)
+}
+
+
 module.exports.sendNotification = function(username,remark,callback){
 	ID.update({username: `${username}`},{$push:{notifications:{notification:`${remark}`,read:0}}},callback)
-}*/
+}
+
+module.exports.getNotifications = function(username,callback){
+	ID.find({'username':`${username}`},{'notifications':1,_id:0},callback)
+}
