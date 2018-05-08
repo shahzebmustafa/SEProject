@@ -1,11 +1,106 @@
 todaysDate = {'date':29,'day':"Monday",'month':"NOVEMBER",'year':2017}
 
+
+
+var dateNow=new Date();
+console.log(dateNow," dateNow")
+var month = dateNow.getMonth();
+
+var nextMonth = 0;
+var prevMonth = 0;
+var day = dateNow.getDate();
+var year = dateNow.getFullYear();
+
+var monthNames = ["January","February","March","April","May","June","July","August","September","October","November", "December"];
+month_name=monthNames[month]
+FebNumberOfDays = 28;
+var dayNames = ["Sunday","Monday","Tuesday","Wednesday","Thrusday","Friday", "Saturday"];
+var dayPerMonth = ["31", ""+FebNumberOfDays+"","31","30","31","30","31","31","30","31","30","31"];
+var nextDate = new Date(nextMonth +' 1 ,'+year);
+var weekdays= nextDate.getDay();
+var weekdays2 = weekdays;
+var numOfDays = dayPerMonth[month];
+var cal1=[]
+
+
+
+const cal_calender=dateNow=>{
+
+
+	console.log("GAGAG",dateNow)
+	var month = dateNow.getMonth();
+	month_name=monthNames[month]
+	nextMonth = month+1;
+	prevMonth = month-1;
+	day = dateNow.getDate();
+	year = dateNow.getFullYear();
+
+	FebNumberOfDays = 28;
+	 //Determing if February (28,or 29)
+	 if (month == 1){
+	    if ( (year%100!=0) && (year%4==0) || (year%400==0)){
+	      FebNumberOfDays = 29;
+	    }else{
+	      FebNumberOfDays = 28;
+	    }
+	 }
+
+	nextDate = new Date(nextMonth +' 1 ,'+year);
+	weekdays= nextDate.getDay();
+	weekdays2 = weekdays;
+	numOfDays = dayPerMonth[month];
+
+	cal1=[]
+	for (var i=0;i<6;i++){
+		var temp=[" "," "," "," "," "," "," "]
+		cal1.push(temp)
+	}
+
+	/* while (weekdays>0){
+
+	    weekdays--;
+	    cal1[0][weekdays]="0"
+	 }*/
+	 var counter=0
+	 var col=weekdays2
+	 var row=0
+	while (counter<numOfDays && row<6)
+	{
+		if(col==7){
+			col=0
+			row++
+		}
+		console.log(counter)
+		console.log(numOfDays)
+		console.log(row," ",col)
+		counter++
+		cal1[row][col]=`${counter}`
+		col++
+	}
+	console.log(cal1)
+}
+cal_calender(dateNow)
+ console.log(cal1)
+//console.log(nextDate.getDay(),"test")
+
+
 let remarks_temp = [{'from':'Admin','subject':'SE','date':'4th May 2018','type':'bad','remark':'Testing Remarks!'},{'from':'Rahij','subject':'CS','date':'4th May 2018','type':'good','remark':'Testing Remarks!'},{'from':'Shahzeb','subject':'Chem','date':'4th May 2018','type':'bad','remark':'kill me!'}]
-let noti_temp = [{'date':'4th May 2018','noti':'Testing Remarks!'},{'date':'4th May 2018','noti':'HELLO!'}]
+let noti_temp = [{'date':'4th May 2018','noti':'Testing Remarks!'},{'date':'4th May 2018','notification':'HELLO!'}]
 
+socket.on('recieve_remarks',data=>{
+	remarks_temp=data;
+	console.log(data,"helloooo")
+})
+socket.on('recieve_notifications',data=>{
 
-const parent_screen = ()=>{
+	noti_temp=data;
+	console.log(data,"helloooo")
+})
+const parent_screen = userN =>{
 
+	console.log(cal1,"userr")
+/*	socket.emit('get_remarks',userN)
+	socket.emit('get_notifications',userN)*/
 	var Parent = React.createClass({
 	  displayName: "Parent",
 
@@ -23,32 +118,32 @@ const parent_screen = ()=>{
 					id_click()
 					home="c"
 					chosen="home"
-					parent_screen()
+					parent_screen(userN)
 				}},"Home"),
 				React.createElement("button",{ className: notifications,onClick:ev=>{
 					id_click()
 					notifications="c"
 					chosen="notifications"
-					parent_screen()
+					parent_screen(userN)
 				} },"Notifications"),
 			  	React.createElement("button",{ className: remarks,onClick:ev=>{
 					id_click()
 					remarks="c"
 					chosen="remarks"
-					parent_screen()
+					parent_screen(userN)
 
 				} },"Remarks"),
 			  	React.createElement("button",{ className: attendance,onClick:ev=>{
 					id_click()
 					attendance="c"
 					chosen="attendance"
-					parent_screen()
+					parent_screen(userN)
 				} },"Attendance"),
 			  	React.createElement("button",{ className: results,onClick:ev=>{
 					id_click()
 					results="c"
 					chosen="results"
-					parent_screen()
+					parent_screen(userN)
 				} },"Results")
 			  	),choice_p()
 			);
@@ -58,7 +153,7 @@ const parent_screen = ()=>{
 }
 
 const rem_type=data=>{
-	if (data=="good")
+	if (data==1)
 	{
 		return React.createElement("img",{type:"image",className: "thumb",src:"\\thumb.png"})
 	}
@@ -77,12 +172,12 @@ const choice_p=()=>
 			remarks_temp.map(s=>{
 				return React.createElement('div',{className:'rem_help'},
 					React.createElement('div',{className:'img_rem_div'},
-					rem_type(s.type)),
+					rem_type(s.good)),
 					React.createElement('text',{className:'remarksBody'},"From: "+s.from),
 					React.createElement('br'),
 					React.createElement('text',{className:'remarksBody'},"Date: "+s.date),
 					React.createElement('br'),
-					React.createElement('text',{className:'remarksBody'},s.subject+": "+s.remark))
+					React.createElement('text',{className:'remarksBody'},/*s.subject+*/": "+s.remark))
 
 			})
 			)
@@ -98,7 +193,7 @@ const choice_p=()=>
 					React.createElement("img",{type:"image",className: "warn",src:"\\bell.png"})),
 					React.createElement('text',{className:'remarksBody'},"Date: "+s.date),
 					React.createElement('br'),
-					React.createElement('text',{className:'remarksBody'},s.noti))
+					React.createElement('text',{className:'remarksBody'},s.notification))
 
 			})
 			)
@@ -106,13 +201,126 @@ const choice_p=()=>
 	}
 	else if(chosen == "attendance")
 	{
-		return React.createElement('div',{className : 'attendance_body_p'},
-			
+		return React.createElement('div',{className : 'attendance_body_p'},			
 			React.createElement('div',{className : 'calenderLeft'},
-				React.createElement('h1',{className: 'attendance_date'},todaysDate.date),
-				React.createElement('h1',{className:'attendance_month'},todaysDate.month)
+				React.createElement('h1',{className: 'attendance_date'},day),
+				React.createElement('h1',{className:'attendance_month'},month_name)
 			),
 			React.createElement('div',{className : 'calenderRight'},
+React.createElement(
+	"div",
+	{ id: "cal" },
+	React.createElement(
+		"div",
+		{ className: "header" },
+		React.createElement(
+			"span",
+			{ className: "left button", id: "prev",onClick:ev=>{
+				month--
+				console.log(month," mon")
+				if(month==-1){
+					month=11
+					year--
+				}
+				cal_calender(new Date(year,month))
+				parent_screen("19100136")
+
+			} },
+			" \u2329 "
+		),
+		React.createElement("span", { className: "left hook" }),
+		React.createElement(
+			"span",
+			{ className: "month-year", id: "label" },
+			month_name+"-"+year
+		),
+		React.createElement("span", { className: "right hook" }),
+		React.createElement(
+			"span",
+			{ className: "right button", id: "next",onClick:ev=>{
+				month++
+				console.log(month," mon")
+
+				if(month==12){
+					month=0
+					year++
+				}
+				cal_calender(new Date(year,month))
+				parent_screen("19100136")
+
+			} },
+			" \u232A "
+		)
+	),
+	React.createElement(
+		"table",
+		{ id: "days" },
+		React.createElement(
+			"tr",
+			null,
+			React.createElement(
+				"td",
+				null,
+				"sun"
+			),
+			React.createElement(
+				"td",
+				null,
+				"mon"
+			),
+			React.createElement(
+				"td",
+				null,
+				"tue"
+			),
+			React.createElement(
+				"td",
+				null,
+				"wed"
+			),
+			React.createElement(
+				"td",
+				null,
+				"thu"
+			),
+			React.createElement(
+				"td",
+				null,
+				"fri"
+			),
+			React.createElement(
+				"td",
+				null,
+				"sat"
+			)
+		)
+	),
+	React.createElement(
+		"div",
+		{ id: "cal-frame" },
+		React.createElement(
+			"table",
+			{ className: "curr" },
+			React.createElement(
+				"tbody",
+				null,
+				cal1.map(s=>
+					React.createElement("tr",null,
+						s.map(t=>
+							React.createElement("td",null,t)
+						))
+				)
+				
+			)
+		)
+	),
+/*	React.createElement("script", { src: "checking.js" }),*/
+	React.createElement(
+		"script",
+		null,
+		"window.$ = window.jQuery = require('./js/libs/jquery-2.2.0.min.js');"
+	)
+),
 				React.createElement('div',{className:'attendance_triangle-left'}),
 				React.createElement('h1',{className:'attendance_year'},todaysDate.year),
 				React.createElement('div',{className:'attendance_triangle-right'}),
