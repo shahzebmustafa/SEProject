@@ -1355,7 +1355,9 @@ body {
 .subjects_body_p{
   width: 75%;
   height: 62.5%;
-  bottom:15%;
+
+  bottom:25%;
+
   position: fixed;
   right: 2.5%;
   resize: both;
@@ -1443,3 +1445,4 @@ body {
   display: inline-block;
   /*text-align: center;*/
 }
+
