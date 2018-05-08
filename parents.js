@@ -113,9 +113,45 @@ const choice_p=()=>
 				React.createElement('h1',{className:'attendance_month'},todaysDate.month)
 			),
 			React.createElement('div',{className : 'calenderRight'},
-				React.createElement('div',{className:'attendance_triangle-left'}),
-				React.createElement('h1',{className:'attendance_year'},todaysDate.year),
 				React.createElement('div',{className:'attendance_triangle-right'}),
+				React.createElement('text',{className:'attendance_year'},todaysDate.year),
+				React.createElement('div',{className:'attendance_triangle-left'}),
+			)
+		)
+	}
+	else if(chosen == "results")
+	{
+		return React.createElement('div',{className : 'results_body_p'},
+			React.createElement('h1',{className:'subjects hTextCenter'},"Subjects"),
+			React.createElement('div',{className: 'subject'},
+				React.createElement("img",{type:'image',className:'round onhover fitH',src:"\\css\\phy.png"}),
+				React.createElement('br'),
+				React.createElement('h2',{className : 'hTextCenter'},'Physics')
+			),
+			React.createElement('div',{className: 'subject'},
+				React.createElement("img",{type:'image',className: 'round onhover fitH',src:"\\css\\chem.png"}),
+				React.createElement('br'),
+				React.createElement('h2',{className : 'hTextCenter'},'Chemistry')
+			),
+			React.createElement('div',{className: 'subject'},
+				React.createElement("img",{type:'image',className: 'round onhover fitH',src:"\\css\\bio.png"}),
+				React.createElement('br'),
+				React.createElement('h2',{className : 'hTextCenter'},'Biology')
+			),
+			React.createElement('div',{className: 'subject'},
+				React.createElement("img",{type:'image',className: 'round onhover fitH',src:"\\css\\math.png"}),
+				React.createElement('br'),
+				React.createElement('h2',{className : 'hTextCenter'},'Maths')
+			),
+			React.createElement('div',{className: 'subject '},
+				React.createElement("img",{type:'image',className: 'round onhover fitH',src:"\\css\\art.png"}),
+				React.createElement('br'),
+				React.createElement('h2',{className : 'hTextCenter'},'Art')
+			),
+			React.createElement('div',{className: 'subject'},
+				React.createElement("img",{type:'image',className: 'round onhover fitH',src:"\\css\\eng.png"}),
+				React.createElement('br'),
+				React.createElement('h2',{className : 'hTextCenter'},'English')
 			)
 		)
 	}
