@@ -1340,7 +1340,7 @@ body {
   width: 11.5%;
   margin-left: 10.5%;
   margin-right: 11%;
-/*  margin-top: 4%; */
+  margin-top: 4%; 
 }
 
 .subjects{
@@ -1353,14 +1353,13 @@ body {
 }
 
 .subjects_body_p{
-/*  width: 70%;*/
-  height: 60.5%;
-/*  bottom:15%;*/
-  position: absolute;
+  width: 75%;
+  height: 62.5%;
+  bottom:25%;
+  position: fixed;
   right: 2.5%;
-  margin-top: 2%;
-/*  resize: both;*/
-/*  border-radius: 10px;*/
+  resize: both;
+  border-radius: 10px;
   display: inline-block;
   font-family: 'Kanit', sans-serif;
 
@@ -1444,3 +1443,4 @@ body {
   display: inline-block;
   /*text-align: center;*/
 }
+
