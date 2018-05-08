@@ -217,7 +217,7 @@ React.createElement(
 		{ className: "header" },
 		React.createElement(
 			"span",
-			{ className: "left button", id: "prev",onClick:ev=>{
+			{ className: "left1 button", id: "prev",onClick:ev=>{
 				month--
 				console.log(month," mon")
 				if(month==-1){
@@ -230,16 +230,16 @@ React.createElement(
 			} },
 			" \u2329 "
 		),
-		React.createElement("span", { className: "left hook" }),
+		React.createElement("span", { className: "left1 hook" }),
 		React.createElement(
 			"span",
 			{ className: "month-year", id: "label" },
 			month_name+"-"+year
 		),
-		React.createElement("span", { className: "right hook" }),
+		React.createElement("span", { className: "right1 hook" }),
 		React.createElement(
 			"span",
-			{ className: "right button", id: "next",onClick:ev=>{
+			{ className: "right1 button", id: "next",onClick:ev=>{
 				month++
 				console.log(month," mon")
 
