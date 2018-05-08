@@ -1,6 +1,8 @@
 todaysDate = {'date':29,'day':"Monday",'month':"NOVEMBER",'year':2017}
 
-
+chosenSubject = ""
+subjects = [['Physics','phy.png'],['Chemistry','chem.png'],['Biology','bio.png'],['Mathematics','math.png'],['Art','art.png'],['English','eng.png']]
+selectedResultMonth = 'May'
 
 var dateNow=new Date();
 console.log(dateNow," dateNow")
@@ -326,6 +328,44 @@ React.createElement(
 				React.createElement('div',{className:'attendance_triangle-right'}),
 			)
 		)
+	}
+	else if(chosen == "results")
+	{
+		console.log(subjects)
+		return React.createElement('div',{className : 'subjects_body_p'},
+			React.createElement('h1',{className:'subjects hTextCenter'},"Subjects"),
+			
+			subjects.map(s=>{
+				return React.createElement('div',{className:'subject'},
+					React.createElement("img",{
+						type:'image',
+						className:'round onhover fitH',
+						src:"\\css\\"+s[1],
+						id: s[0],
+						onClick : ev=>{
+							console.log(ev.target.src)
+							chosen = "subjectSelection"
+							chosenSubject = ev.target.id
+							parent_screen()
+						}
+						}),
+					React.createElement('br'),
+					React.createElement('h2',{className : 'hTextCenter'},'Physics')
+				)
+			})
+		)
+	}
+	else if(chosen == "subjectSelection"){
+		return React.createElement('div',{className:'results_body_p'},
+			React.createElement('h1',{className: 'hTextCenter'},chosenSubject),
+			React.createElement('div',{className: 'resultsMonthArea'},
+				React.createElement('div',{className: 'arrow left'}),
+				React.createElement('h2',{className:'results_month'},selectedResultMonth),
+				React.createElement('div',{className: 'arrow right'})
+			),
+			React.createElement('div',{className : 'results_body_p'})
+		)
+
 	}
 }
 
