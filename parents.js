@@ -2,8 +2,9 @@ todaysDate = {'date':29,'day':"Monday",'month':"NOVEMBER",'year':2017}
 
 let remarks_temp = [{'from':'Admin','subject':'SE','date':'4th May 2018','type':'bad','remark':'Testing Remarks!'},{'from':'Rahij','subject':'CS','date':'4th May 2018','type':'good','remark':'Testing Remarks!'},{'from':'Shahzeb','subject':'Chem','date':'4th May 2018','type':'bad','remark':'kill me!'}]
 let noti_temp = [{'date':'4th May 2018','noti':'Testing Remarks!'},{'date':'4th May 2018','noti':'HELLO!'}]
-
-
+chosenSubject = ""
+subjects = [['Physics','phy.png'],['Chemistry','chem.png'],['Biology','bio.png'],['Mathematics','math.png'],['Art','art.png'],['English','eng.png']]
+selectedResultMonth = 'May'
 const parent_screen = ()=>{
 
 	var Parent = React.createClass({
@@ -121,45 +122,43 @@ const choice_p=()=>
 	}
 	else if(chosen == "results")
 	{
-		return React.createElement('div',{className : 'results_body_p'},
+		console.log(subjects)
+		return React.createElement('div',{className : 'subjects_body_p'},
 			React.createElement('h1',{className:'subjects hTextCenter'},"Subjects"),
-			React.createElement('div',{className: 'subject'},
-				React.createElement("img",{
-					type:'image',
-					className:'round onhover fitH',
-					src:"\\css\\phy.png",
-					id: "phy"
-				}),
-				React.createElement('br'),
-				React.createElement('h2',{className : 'hTextCenter'},'Physics')
-			),
-			React.createElement('div',{className: 'subject'},
-				React.createElement("img",{type:'image',className: 'round onhover fitH',src:"\\css\\chem.png"}),
-				React.createElement('br'),
-				React.createElement('h2',{className : 'hTextCenter'},'Chemistry')
-			),
-			React.createElement('div',{className: 'subject'},
-				React.createElement("img",{type:'image',className: 'round onhover fitH',src:"\\css\\bio.png"}),
-				React.createElement('br'),
-				React.createElement('h2',{className : 'hTextCenter'},'Biology')
-			),
-			React.createElement('div',{className: 'subject'},
-				React.createElement("img",{type:'image',className: 'round onhover fitH',src:"\\css\\math.png"}),
-				React.createElement('br'),
-				React.createElement('h2',{className : 'hTextCenter'},'Maths')
-			),
-			React.createElement('div',{className: 'subject '},
-				React.createElement("img",{type:'image',className: 'round onhover fitH',src:"\\css\\art.png"}),
-				React.createElement('br'),
-				React.createElement('h2',{className : 'hTextCenter'},'Art')
-			),
-			React.createElement('div',{className: 'subject'},
-				React.createElement("img",{type:'image',className: 'round onhover fitH',src:"\\css\\eng.png"}),
-				React.createElement('br'),
-				React.createElement('h2',{className : 'hTextCenter'},'English')
-			)
+			
+			subjects.map(s=>{
+				return React.createElement('div',{className:'subject'},
+					React.createElement("img",{
+						type:'image',
+						className:'round onhover fitH',
+						src:"\\css\\"+s[1],
+						id: s[0],
+						onClick : ev=>{
+							console.log(ev.target.src)
+							chosen = "subjectSelection"
+							chosenSubject = ev.target.id
+							parent_screen()
+						}
+						}),
+					React.createElement('br'),
+					React.createElement('h2',{className : 'hTextCenter'},'Physics')
+				)
+			})
 		)
+	}
+	else if(chosen == "subjectSelection"){
+		return React.createElement('div',{className:'results_body_p'},
+			React.createElement('h1',{className: 'hTextCenter'},chosenSubject),
+			React.createElement('div',{className: 'resultsMonthArea'},
+				React.createElement('div',{className: 'arrow left'}),
+				React.createElement('h2',{className:'results_month'},selectedResultMonth),
+				React.createElement('div',{className: 'arrow right'})
+			),
+			React.createElement('div',{className : 'results_body_p'})
+		)
+
 	}
 }
 
 //admin_screen();
+

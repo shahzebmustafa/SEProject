@@ -141,7 +141,7 @@ const login = ()=>{
           React.createElement("button",
             { className: "blue_button log_button hCenter",
             onClick:ev=>{
-              //admin_screen()
+              // admin_screen()
               parent_screen()
               console.log("ENYERE")
               socket.emit('authenticate',[userN,pass])
