@@ -124,7 +124,12 @@ const choice_p=()=>
 		return React.createElement('div',{className : 'results_body_p'},
 			React.createElement('h1',{className:'subjects hTextCenter'},"Subjects"),
 			React.createElement('div',{className: 'subject'},
-				React.createElement("img",{type:'image',className:'round onhover fitH',src:"\\css\\phy.png"}),
+				React.createElement("img",{
+					type:'image',
+					className:'round onhover fitH',
+					src:"\\css\\phy.png",
+					id: "phy"
+				}),
 				React.createElement('br'),
 				React.createElement('h2',{className : 'hTextCenter'},'Physics')
 			),
