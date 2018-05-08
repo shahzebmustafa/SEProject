@@ -42,12 +42,21 @@ var idSchema=mongoose.Schema({
 	remarks: [{
 		remark: String,
 		read: Number,
-		from: String
+		from: String,
+		create_date:{
+			type: Date,
+			default: Date.now
+		},
+		good: Number
 	}],
 	
 	notifications:[{
 		notification: String,
-		read:Number
+		read:Number,
+		create_date:{
+			type: Date,
+			default: Date.now
+		}
 	}]
 
 	//result: {{}}
@@ -71,8 +80,8 @@ module.exports.addID = function(id, callback){
 }
 
 
-module.exports.sendRemarks = function(username,remark,from,callback){
-	ID.update({username: `${username}`},{$push:{remarks:{remark:`${remark}`,read:0,from:`${from}`}}},callback)
+module.exports.sendRemarks = function(username,remark,from,good1,callback){
+	ID.update({username: `${username}`},{$push:{remarks:{remark:`${remark}`,read:0,from:`${from}`,good:good1}}},callback)
 }
 
 module.exports.getRemarks = function(username,callback){
