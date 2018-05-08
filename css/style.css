@@ -1340,7 +1340,7 @@ body {
   width: 11.5%;
   margin-left: 10.5%;
   margin-right: 11%;
-  margin-top: 4%; 
+/*  margin-top: 4%; */
 }
 
 .subjects{
@@ -1353,13 +1353,14 @@ body {
 }
 
 .subjects_body_p{
-  width: 75%;
-  height: 62.5%;
-  bottom:15%;
-  position: fixed;
+/*  width: 70%;*/
+  height: 60.5%;
+/*  bottom:15%;*/
+  position: absolute;
   right: 2.5%;
-  resize: both;
-  border-radius: 10px;
+  margin-top: 2%;
+/*  resize: both;*/
+/*  border-radius: 10px;*/
   display: inline-block;
   font-family: 'Kanit', sans-serif;
 

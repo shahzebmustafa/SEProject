@@ -350,7 +350,7 @@ React.createElement(
 						}
 						}),
 					React.createElement('br'),
-					React.createElement('h2',{className : 'hTextCenter'},'Physics')
+					React.createElement('h2',{className : 'hTextCenter'},s[0])
 				)
 			})
 		)
