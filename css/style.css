@@ -565,7 +565,13 @@ margin-top: 2%;
   height:5%; 
 
 }
+.form22{
+  width: 20%;
+  margin-left: 2.5% !important;
+  margin-top: 5%;
+  height:5%; 
 
+}
 .form3{
   width: 20%;
   margin-left: 6% !important;
@@ -1338,6 +1344,7 @@ body {
   /*background:rgba(0,0,0,0.5);*/
   display: inline-block;
   width: 11.5%;
+  position: relative;
   margin-left: 10.5%;
   margin-right: 11%;
   margin-top: 4%; 
@@ -1354,10 +1361,10 @@ body {
 
 .subjects_body_p{
   width: 75%;
-  height: 62.5%;
+/*  height: 62.5%;*/
 
-  bottom:25%;
-
+  margin-bottom: 7%;
+  margin-top: 2%;
   position: fixed;
   right: 2.5%;
   resize: both;
@@ -1366,6 +1373,10 @@ body {
   font-family: 'Kanit', sans-serif;
 
 
+}
+.subs{
+  font-weight: 800;
+  font-size: 100%;
 }
 
 .onhover:hover{

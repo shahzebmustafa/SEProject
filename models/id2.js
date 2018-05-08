@@ -22,10 +22,6 @@ var idSchema=mongoose.Schema({
 		require:true
 	},
 	
-	age:{
-		type: String
-	},
-	
 	classEnrolled:{
 		type: String
 	},

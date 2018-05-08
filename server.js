@@ -40,11 +40,20 @@ const remarks = (toUsername,remark,from,good)=>{
 	})
 } 
 
-const createNewUser = (username,password,mode,name,age,classEnrolled,classTeaching,email)=>{
-	ID.addID({'username':`${username}`,'password':`${password}`,'mode':`${mode}`,'name':`${name}`,'age':`${age}`,'classEnrolled':`${classEnrolled}`,'classTeaching':`${classTeaching}`,'email':`${email}`},()=>{
+const createNewTeacher = (username,password,name,classTeaching,email)=>{
+	ID.addID({'username':`${username}`,'password':`${password}`,'mode':'teacher','name':`${name}`,'classTeaching':`${classTeaching}`,'email':`${email}`},()=>{
 		console.log("user added")
 	})
 }
+
+
+const createNewParent = (username,password,name,classEnrolled,email)=>{
+	ID.addID({'username':`${username}`,'password':`${password}`,'mode':'student','name':`${name}`,'classEnrolled':`${classEnrolled}`,'email':`${email}`},()=>{
+		console.log("user added")
+	})
+}
+
+//createNewTeacher("200001","teacher","teacher","Ali","11C","teacher@gmail.com")
 //createNewUser("shahzeb","shahzeb","teacher","shahzeb","22"," "," ","shahzeb@gmail.com")
 //remarks("19100136","good remark","teacher",1)
 
@@ -55,11 +64,15 @@ const createClass=(grade,classTeacher,rollnoArray)=>{
 
 }
 
-const addStudentToClass=(className,rollno)=>{
-	CLASS.addStudent(className,rollno,()=>{
+const addStudentToClass=(className,name,rollno)=>{
+	CLASS.addStudent(className,name,rollno,()=>{
 		console.log('student added')
 	})
 }
+//addStudentToClass("11C","Rahij Gillani","19100078")
+//addStudentToClass("11C","Shazeb Mustafa","19100004")
+
+
 const notifications = (toUsername,remark)=>{
 	ID.sendNotification(toUsername,remark,()=>{
 		console.log("notification sent")
@@ -98,7 +111,7 @@ const sendUsernamePassword = (u,p,callback)=>{
 	})
 }
 
-const getStudentsbyClass = (grade)=>{
+const getStudentsbyClass = (id,grade)=>{
 	CLASS.getStudents(grade,function(err,rollnoArray){
 		if (err){
 			console.log('Error')
@@ -107,11 +120,31 @@ const getStudentsbyClass = (grade)=>{
 			rollnoArray=rollnoArray[0]
 			rollnoArray=rollnoArray['students']
 			console.log(rollnoArray)
+
+			io.to(id).emit("stList",rollnoArray)
 		}
 	})
 }
 //addStudentToClass('11C','1910004')
 //getStudentsbyClass('11C')
+
+
+const getAllClasses = id=>{
+	CLASS.getClass(function(err,classes){
+		if(err){
+			console.log("ERROR")
+		}
+		else{
+			temp=[]
+			for (var i=0;i<classes.length;i++){
+				temp.push(classes[i]['grade'])
+			}
+			io.to(id).emit("recieveClasses",temp)
+
+		}
+	})
+}
+getAllClasses()
 
 const getRemarks = (username,id)=>{
 	ID.getRemarks(username,function(err,remarksArray){
@@ -218,6 +251,23 @@ io.sockets.on('connection',socket=>{
 		getNotification(data,socket.id)
 		
 	})
+	socket.on("getClasses",()=>{
+		getAllClasses(socket.id)
+		
+	})
+	socket.on("giveStu",data=>{
+		getStudentsbyClass(socket.id,data)
+		
+	})
+	socket.on("createStu",data=>{
+		createNewParent(data[0],data[1],data[2],data[3],data[4])
+		
+	})
+	socket.on("createTea",data=>{
+		createNewTeacher(data[0],data[1],data[2],data[3],data[4])
+		
+	})
+
 })
 server.listen(8000,()=> console.log('Started...'))
 
