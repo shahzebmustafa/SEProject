@@ -565,7 +565,13 @@ margin-top: 2%;
   height:5%; 
 
 }
+.form22{
+  width: 20%;
+  margin-left: 2.5% !important;
+  margin-top: 5%;
+  height:5%; 
 
+}
 .form3{
   width: 20%;
   margin-left: 6% !important;
@@ -1338,6 +1344,7 @@ body {
   /*background:rgba(0,0,0,0.5);*/
   display: inline-block;
   width: 11.5%;
+  position: relative;
   margin-left: 10.5%;
   margin-right: 11%;
   margin-top: 4%; 
@@ -1354,8 +1361,14 @@ body {
 
 .subjects_body_p{
   width: 75%;
+<<<<<<< HEAD
 
   margin-bottom:7%;
+=======
+/*  height: 62.5%;*/
+
+  margin-bottom: 7%;
+>>>>>>> fbde3edae6966232b1071cf909c47329662fc66d
   margin-top: 2%;
   position: fixed;
   right: 2.5%;
@@ -1365,6 +1378,10 @@ body {
   font-family: 'Kanit', sans-serif;
 
 
+}
+.subs{
+  font-weight: 800;
+  font-size: 100%;
 }
 
 .subs{

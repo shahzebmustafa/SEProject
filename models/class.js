@@ -9,9 +9,10 @@ var classSchema=mongoose.Schema({
 		type: String,
 		require:true
 	},
-	students:[
-		String
-	]
+	students:[{
+		name: String,
+		rNumber: String
+	}]
 })
 
 var Class = module.exports = mongoose.model('CLASS',classSchema);
@@ -31,8 +32,8 @@ module.exports.addClass = function(id, callback){
 	CLASS.create(id,callback);
 }
 
-module.exports.addStudent = function(grade,rollno,callback){
-	CLASS.update({grade: `${grade}`},{$push:{students:rollno}},callback)
+module.exports.addStudent = function(grade,name1,rollno,callback){
+	CLASS.update({grade: `${grade}`},{$push:{students:{name:name1,rNumber:rollno}}},callback)
 }
 
 module.exports.getStudents = function(grade,callback){
