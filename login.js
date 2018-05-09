@@ -111,17 +111,24 @@ socket.on("auth_parent",data=>
 {
   console.log(data," logged in")
   parent_screen(data)
+
+})
+
 })*/
 
-// socket.on("auth_teacher",data=>
-// {
-//   _screen()
-// })
+/*socket.on("auth_teacher",data=>
+{
+  parent_screen()
+})
 
 socket.on("auth_failed",data=>
 {
   login()
 })
+socket.on("auth_teacher",data=>
+{
+  admin_screen()
+})*/
 const login = ()=>{
 
   var Login = React.createClass({
@@ -155,9 +162,15 @@ const login = ()=>{
           React.createElement("button",
             { className: "blue_button log_button hCenter",
             onClick:ev=>{
+              //admin_screen()
+              //teacher_screen()
+              parent_screen("19100136")
+              console.log("ENYERE")
+
               //admin_screen(userN)
               parent_screen("19100136")
               // console.log("ENYERE")
+
               socket.emit('authenticate',[userN,pass])
               
               } 
