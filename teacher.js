@@ -10,6 +10,7 @@ let results = "b"
 */
 //let rem_create="none"
 accounts = ["Parent", "Teacher"]
+accountDetails = {'name':"Zeeshan Sadiq Khan",'class':'Department of Computer Science','awards':['Teacher of the Month'],'classes':['Class One','Class Two','Class Four']}
 
 //let classes = ["Class One","Class Two","Class Three","Class Four","Class One","Class Two","Class Three","Class Four"]
 //let students = [{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'}]
@@ -24,6 +25,8 @@ accounts = ["Parent", "Teacher"]
 	results="b"
 }
 */
+id_click()
+home="c"
 let total_classes_arrT=[1,2,3]
 
 socket.on('totalClassesTeacher',data=>
@@ -103,6 +106,7 @@ const choiceT=()=>
 	console.log("HERE")
 	if(chosen=="remarks")
 	{
+		console.log('remarks')
 		return React.createElement('div',{className:'remark_body'},
 			React.createElement('form',{},
 				React.createElement('textarea',{className:"t_area",rows:"5",cols:"50",onChange:ev=>{
@@ -144,6 +148,7 @@ const choiceT=()=>
 
 	else if(chosen=="notifications")
 	{
+		console.log('noti')
 		return React.createElement('div',{className:'remark_body'},
 			React.createElement('form',{},
 				React.createElement('textarea',{className:"t_area",rows:"5",cols:"50",onChange:ev=>{
@@ -169,6 +174,7 @@ const choiceT=()=>
 	}
 	else if(chosen=="attendance")
 	{
+		console.log('attendancePanel')
 		return React.createElement('div',{className:'displayPanel'},
 			React.createElement('h1',{className:'head_att'},'Attendance'),
 			React.createElement('div',{className:'attendancePanel'},
@@ -226,6 +232,7 @@ const choiceT=()=>
 	}
 	else if(chosen=="manage_acc")
 	{
+		console.log('manage')
 		if (rem_create=="none")
 		{
 		  	return React.createElement('div',{className:"displayBox"},
@@ -270,6 +277,48 @@ const choiceT=()=>
 		  }
 
 
+	}
+	else if(chosen == 'home'){
+		console.log('hello')
+		return React.createElement('div',{className:'parent_home'},
+			React.createElement('h1',null,'Welcome to Student Progress Portal'),
+			React.createElement('div',{className:'student_profile'},
+				React.createElement('h2',null,'Teacher Profile'),
+				React.createElement('img',{type:'image',src:'\\css\\zeeshan.jpg',className:'imageFitStudent'}),
+				React.createElement('br'),
+				React.createElement('h2',null,accountDetails.name),
+				React.createElement('h3',null,accountDetails.class)
+
+			),
+			React.createElement('div',{className:'student_awards'},
+				React.createElement('h2',null,'Awards and honors'),
+				accountDetails.awards.map(a=>{
+					return React.createElement('h3',null,a)
+				})
+			)
+		)
+	}
+	else if(chosen == 'results'){
+		return React.createElement('div',{className:'results_body_t'},
+			React.createElement('select',{
+					display:'Select Class',
+					onChange: ev => {
+						resultUpdateClass = ev.target.value
+						if(resultUpdateClass == 'Select Class'){
+
+						}
+						else{
+	    					socket.emit("giveStu",c)
+						}
+					}
+				},
+				React.createElement('option',{},'Select Class'),
+				accountDetails['classes'].map(c=>{
+					return React.createElement('option',{},c)
+				})
+			)
+			React.createElement('submit'{type:'submit'})
+		)
 	}
 }
 

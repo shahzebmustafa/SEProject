@@ -1523,3 +1523,18 @@ body {
 }
 /*Shahzeb parent home*/
 
+
+
+.results_body_t{
+
+  background:rgba(255,255,255,0.5);
+  min-width: 75%;
+  height: 75%;
+  bottom:8%;
+  position: fixed;
+  right: 2.5%;
+  resize: both;
+  border-radius: 10px;
+  display: inline-block;
+  font-family: 'Kanit', sans-serif;
+}

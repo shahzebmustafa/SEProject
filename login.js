@@ -162,9 +162,9 @@ const login = ()=>{
           React.createElement("button",
             { className: "blue_button log_button hCenter",
             onClick:ev=>{
-              //admin_screen()
-              //teacher_screen()
-              parent_screen("19100136")
+              // admin_screen()
+              // teacher_screen()
+              // parent_screen("19100136")
               console.log("ENYERE")
 
               //admin_screen(userN)
