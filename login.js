@@ -125,7 +125,7 @@ socket.on("auth_failed",data=>
 socket.on("auth_teacher",data=>
 {
   admin_screen()
-})*/
+})
 const login = ()=>{
 
   var Login = React.createClass({
@@ -159,11 +159,7 @@ const login = ()=>{
           React.createElement("button",
             { className: "blue_button log_button hCenter",
             onClick:ev=>{
-<<<<<<< HEAD
-              admin_screen(userN)
-              //parent_screen("19100136")
-              // console.log("ENYERE")
-=======
+
               //admin_screen()
               //teacher_screen()
               parent_screen("19100136")
@@ -173,7 +169,6 @@ const login = ()=>{
               parent_screen("19100136")
               // console.log("ENYERE")
 
->>>>>>> bbff4aa3454571c4a92f4cad987a157c454a1293
               socket.emit('authenticate',[userN,pass])
               
               } 
