@@ -8,12 +8,21 @@ let attendance = "b"
 let chosen=""
 let results = "b"
 
+let firstName=""
+let secondName=""
+let email_u=""
+let grade=""
+let pass2=""
+let userName=""
+let sub=""
+
 let rem_create="none"
 accounts = ["Parent", "Teacher"]
 
 let classes = ["Class One","Class Two","Class Three","Class Four","Class One","Class Two","Class Three","Class Four"]
-let students = [{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'}]
 
+//let students = [{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'}]
+let students=[]
 const id_click=()=>{
 	
 	home="b"
@@ -25,13 +34,29 @@ const id_click=()=>{
 }
 
 let total_classes_arr=[1,2,3]
-
 socket.on('totalClasses',data=>
 {
 	total_classes_arr=data
 	admin_screen()	
 })
 
+socket.on("recieveClasses",data=>{
+	classes=data
+	admin_screen()
+})
+socket.on("stList",data=>{
+	temp=[]
+	for (var i=0;i<data.length;i++){
+		temp.push({})
+		temp[i]["name"]=data[i]["name"]
+		temp[i]["rNumber"]=data[i]["rNumber"]
+		temp[i]["att"]="A"
+	}
+
+	students=temp
+	//console.log(data)
+	admin_screen()
+})
 const admin_screen = ()=>{
 
 	var Admin = React.createClass({
@@ -69,6 +94,7 @@ const admin_screen = ()=>{
 			  	React.createElement("button",{ className: attendance,onClick:ev=>{
 					id_click()
 					attendance="c"
+					socket.emit("getClasses")
 					chosen="attendance"
 					admin_screen()
 				} },"Attendance"),
@@ -169,6 +195,7 @@ const choice=()=>
 	}
 	else if(chosen=="attendance")
 	{
+
 		return React.createElement('div',{className:'displayPanel'},
 			React.createElement('h1',{className:'head_att'},'Attendance'),
 			React.createElement('div',{className:'attendancePanel'},
@@ -189,15 +216,19 @@ const choice=()=>
 				React.createElement('div',{className:'attendance'},
 					students.map(s=>{
 						return React.createElement('div',{style:{className: 'blackBorder'}},
-							React.createElement('text',null,s.att),
+/*							React.createElement('text',null,s.att),*/
 							React.createElement("input",{radio_ch_un:0,id:s.rNumber,type:"radio",onClick:ev=>{
 								if(ev.target.radio_ch_un==1){
 									ev.target.radio_ch_un=0
+									s.att='A'
 									document.getElementById(ev.target.id).checked=false
 								}
 								else{
 									ev.target.radio_ch_un=1
+									s.att='P'
 								}
+								/*console.log(students,"hxwig")*/
+
 								
 							}})
 						)
@@ -213,7 +244,9 @@ const choice=()=>
 		  			React.createElement("button",{ className: "dropbtn" },"Select Class"),
 		  			React.createElement("div",{ className: "dropdown-content" },
 		    			classes.map(c =>{
-		    				return React.createElement("a",{ href: "#" },c)
+		    				return React.createElement("a",{ href: "#",onClick:ev=>{
+		    					socket.emit("giveStu",c)
+		    				} },c)
 		    			})
 		  			)
 				),
@@ -229,17 +262,19 @@ const choice=()=>
 		if (rem_create=="none")
 		{
 		  	return React.createElement('div',{className:"displayBox"},
-		  		React.createElement("h1",{className:"manage_acc_head"},"Manage Accounts"),
+		  		React.createElement("h1",{className:"manage_acc_head"},"MANAGE ACCOUNTS"),
 	  			React.createElement("input",{ type: "Username", className: "addUsername", placeholder: "Username" }),
 	  			React.createElement("button", {className: 'removeUserButton', onClick:ev=>{
 	              //removeAcc();
-	              rem_create ="r"
-	              admin_screen()
 	            }}, "Remove User"),
 	  			React.createElement("button", {className: 'createUserButton', onClick:ev=>{
 	              rem_create="c"
 	              admin_screen()
-	            }}, "Create New User")
+	            }}, "Create New Student"),
+	  			React.createElement("button", {className: 'createUserButton', onClick:ev=>{
+	              rem_create="ct"
+	              admin_screen()
+	            }}, "Create New Teacher")
 
 	  		);
 		 
@@ -249,29 +284,107 @@ const choice=()=>
 			return React.createElement('div',{className:"removeBox"},
 					React.createElement('div', {className: "popUp"},
 						React.createElement('div',{className:"smallpopUp"},
-						React.createElement('text',{className: 'create_h'}, 'Create New Account'),
+						React.createElement('text',{className: 'create_h'}, 'Create New Student'),
 						React.createElement("img",{type:"image",className: "photo",src:"\\images.png"}),
 						React.createElement("button", {className: 'generateButton_photo'}, "Browse"),
 						React.createElement('br'),
-						React.createElement('input',{ type: "text", className: "form", placeholder: "First Name" }),
-						React.createElement('input',{ type: "text", className: "form2", placeholder: "Second Name" }),
+						React.createElement('input',{ type: "text", className: "form", placeholder: "First Name",onChange:ev=>{
+							firstName=ev.target.value
+						} }),
+						React.createElement('input',{ type: "text", className: "form2", placeholder: "Second Name",onChange:ev=>{
+							secondName=ev.target.value
+						} }),
 						React.createElement('br'),
-						React.createElement('input',{ type: "email", className: "form", placeholder: "Email Address" }),
-						React.createElement('input',{ type: "text", className: "form2", placeholder: "Grade" }),
+						React.createElement('input',{ type: "email", className: "form", placeholder: "Email Address",onChange:ev=>{
+							email_u=ev.target.value
+						} }),
+						React.createElement('input',{ type: "text", className: "form2", placeholder: "Grade",onChange:ev=>{
+							grade=ev.target.value
+						} }),
 						React.createElement('br'),
-						React.createElement('input',{ type: "text", className: "form5", placeholder: "Username" }),
+						React.createElement('input',{ type: "text", className: "form5", placeholder: "Username",onChange:ev=>{
+							userName=ev.target.value
+						} }),
 						React.createElement("button", {className: 'generateButton_user'}, "Generate"),
 						React.createElement('br'),
-						React.createElement('input',{ type: "text", className: "form6", placeholder: "Password" }),
+						React.createElement('input',{ type: "text", className: "form6", placeholder: "Password",onChange:ev=>{
+							pass2=ev.target.value
+						} }),
 						React.createElement("button", {className: 'generateButton_pass'}, "Generate"),
 						React.createElement('br'),
-						React.createElement("button", {className: 'generateButton_cre'}, "Create")
+						React.createElement("button", {className: 'generateButton_cre',onClick:ev=>{
+							socket.emit("createStu",[userName,pass2,firstName+" "+secondName,grade,email_u])
+							id_click()
+							manage_acc="c"
+							rem_create="none"
+							chosen="manage_acc"
+							firstName=""
+							secondName=""
+							email_u=""
+							grade=""
+							userName=""
+							pass2=""
+							admin_screen()
+						}}, "Create")
 
 						))
 					);
 		  }
-		  else if(rem_create=="r"){
-		  	
+		else if (rem_create=="ct"){
+			//return create()
+			return React.createElement('div',{className:"removeBox"},
+					React.createElement('div', {className: "popUp"},
+						React.createElement('div',{className:"smallpopUp"},
+						React.createElement('text',{className: 'create_h'}, 'Create New Teacher'),
+						React.createElement("img",{type:"image",className: "photo",src:"\\images.png"}),
+						React.createElement("button", {className: 'generateButton_photo'}, "Browse"),
+						React.createElement('br'),
+						React.createElement('input',{ type: "text", className: "form", placeholder: "First Name",onChange:ev=>{
+							firstName=ev.target.value
+						} }),
+						React.createElement('input',{ type: "text", className: "form2", placeholder: "Second Name",onChange:ev=>{
+							secondName=ev.target.value
+						} }),
+						React.createElement('br'),
+						React.createElement('input',{ type: "email", className: "form", placeholder: "Email Address",onChange:ev=>{
+							email_u=ev.target.value
+						} }),
+						React.createElement('input',{ type: "text", className: "form2", placeholder: "Grade",onChange:ev=>{
+							grade=ev.target.value
+						} }),
+						React.createElement('br'),
+						React.createElement('input',{ type: "text", className: "form", placeholder: "Subject",onChange:ev=>{
+							sub=ev.target.value
+						} }),
+						React.createElement('br'),
+						React.createElement('input',{ type: "text", className: "form5", placeholder: "Username",onChange:ev=>{
+							userName=ev.target.value
+						} }),
+						React.createElement("button", {className: 'generateButton_user'}, "Generate"),
+						React.createElement('br'),
+						React.createElement('input',{ type: "text", className: "form6", placeholder: "Password",onChange:ev=>{
+							pass2=ev.target.value
+						} }),
+						React.createElement("button", {className: 'generateButton_pass'}, "Generate"),
+						React.createElement('br'),
+						React.createElement("button", {className: 'generateButton_cre',onClick:ev=>{
+							socket.emit("createTea",[userName,pass2,firstName+" "+secondName,grade,email_u])
+							id_click()
+							manage_acc="c"
+							rem_create="none"
+							chosen="manage_acc"
+							firstName=""
+							secondName=""
+							email_u=""
+							grade=""
+							sub=""
+							userName=""
+							pass2=""
+							admin_screen()
+						}}, "Create")
+
+						))
+					);
 		  }
 
 

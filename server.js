@@ -33,11 +33,29 @@ let games=[]
 //	console.log("added remark.")
 //})
 
-const remarks = (toUsername,remark,from)=>{
-	ID.sendRemarks(toUsername,remark,from,()=>{
+
+const remarks = (toUsername,remark,from,good)=>{
+	ID.sendRemarks(toUsername,remark,from,good,()=>{
 		console.log("remark sent")
 	})
 } 
+
+const createNewTeacher = (username,password,name,classTeaching,email)=>{
+	ID.addID({'username':`${username}`,'password':`${password}`,'mode':'teacher','name':`${name}`,'classTeaching':`${classTeaching}`,'email':`${email}`},()=>{
+		console.log("user added")
+	})
+}
+
+
+const createNewParent = (username,password,name,classEnrolled,email)=>{
+	ID.addID({'username':`${username}`,'password':`${password}`,'mode':'student','name':`${name}`,'classEnrolled':`${classEnrolled}`,'email':`${email}`},()=>{
+		console.log("user added")
+	})
+}
+
+//createNewTeacher("200001","teacher","teacher","Ali","11C","teacher@gmail.com")
+//createNewUser("shahzeb","shahzeb","teacher","shahzeb","22"," "," ","shahzeb@gmail.com")
+//remarks("19100136","good remark","teacher",1)
 
 const createClass=(grade,classTeacher,rollnoArray)=>{
 	CLASS.addClass({'grade':grade,'classTeacher':classTeacher,'students':rollnoArray},()=>{
@@ -46,11 +64,15 @@ const createClass=(grade,classTeacher,rollnoArray)=>{
 
 }
 
-const addStudentToClass=(className,rollno)=>{
-	CLASS.addStudent(className,rollno,()=>{
+const addStudentToClass=(className,name,rollno)=>{
+	CLASS.addStudent(className,name,rollno,()=>{
 		console.log('student added')
 	})
 }
+//addStudentToClass("11C","Rahij Gillani","19100078")
+//addStudentToClass("11C","Shazeb Mustafa","19100004")
+
+
 const notifications = (toUsername,remark)=>{
 	ID.sendNotification(toUsername,remark,()=>{
 		console.log("notification sent")
@@ -67,21 +89,29 @@ const sendUsernamePassword = (u,p,callback)=>{
 		}
 		//console.log('here2')
 		if(id.length==1){
+			//console.log(id)
 			if (id[0].password==p){
-				console.log('in')
+				//console.log('in')
 				check=1
-				callback(1)
-
+				if(id[0].mode=="student"){
+					callback(1,id[0].username)
+				}
+				else if (id[0].mode=="admin"){
+					callback(2,id[0].username)
+				}
+				else if(id[0].mode=="teacher"){
+					callback(3,id[0].username)
+				}
 			}
 			else
-				callback(0)
+				callback(0,0)
 		}
 		else
-			callback(0)
+			callback(0,0)
 	})
 }
 
-const getStudentsbyClass = (grade)=>{
+const getStudentsbyClass = (id,grade)=>{
 	CLASS.getStudents(grade,function(err,rollnoArray){
 		if (err){
 			console.log('Error')
@@ -90,13 +120,33 @@ const getStudentsbyClass = (grade)=>{
 			rollnoArray=rollnoArray[0]
 			rollnoArray=rollnoArray['students']
 			console.log(rollnoArray)
+
+			io.to(id).emit("stList",rollnoArray)
 		}
 	})
 }
 //addStudentToClass('11C','1910004')
-getStudentsbyClass('11C')
+//getStudentsbyClass('11C')
 
-const getRemarks = (username)=>{
+
+const getAllClasses = id=>{
+	CLASS.getClass(function(err,classes){
+		if(err){
+			console.log("ERROR")
+		}
+		else{
+			temp=[]
+			for (var i=0;i<classes.length;i++){
+				temp.push(classes[i]['grade'])
+			}
+			io.to(id).emit("recieveClasses",temp)
+
+		}
+	})
+}
+getAllClasses()
+
+const getRemarks = (username,id)=>{
 	ID.getRemarks(username,function(err,remarksArray){
 
 		if (err){
@@ -106,13 +156,21 @@ const getRemarks = (username)=>{
 			//remarksArray.map(i=>console.log(i))
 			remarksArray=remarksArray[0]
 			remarksArray=remarksArray['remarks']
-			console.log(remarksArray) //////////////////////////// this is the remarks array of the user
-			//id.map(i=>console.log(i))
+			newArr=[]
+			for (var i=0;i<remarksArray.length;i++){
+				newArr.push({})
+				newArr[i]["date"]=remarksArray[i]["create_date"].toDateString().substring(4)
+				newArr[i]["remark"]=remarksArray[i]["remark"]
+				newArr[i]["good"]=remarksArray[i]["good"]
+				newArr[i]["read"]=remarksArray[i]["read"]
+				newArr[i]["from"]=remarksArray[i]["from"]				
+			}
+			io.to(id).emit("recieve_remarks",newArr)
 		}
 	})
 }
-
-const getNotification = (username)=>{
+//getRemarks("19100136")
+const getNotification = (username,id)=>{
 	ID.getNotifications(username,function(err,notificationsArray){
 
 		if (err){
@@ -122,7 +180,18 @@ const getNotification = (username)=>{
 			//notificationsArray.map(i=>console.log(i))
 			notificationsArray=notificationsArray[0]
 			notificationsArray=notificationsArray['notifications']
-			console.log(notificationsArray) //////////////////////////// this is the remarks array of the user
+			newArr=[]
+			for (var i=0;i<notificationsArray.length;i++){
+				newArr.push({})
+				newArr[i]["date"]=notificationsArray[i]["create_date"].toDateString().substring(4)
+				newArr[i]["notification"]=notificationsArray[i]["notification"]
+				newArr[i]["read"]=notificationsArray[i]["read"]
+
+			}
+			io.to(id).emit("recieve_notifications",newArr)
+
+
+			//console.log(notificationsArray) //////////////////////////// this is the remarks array of the user
 			//id.map(i=>console.log(i))
 		}
 	})
@@ -151,11 +220,17 @@ const io= socketio(server)
 io.sockets.on('connection',socket=>{ 
 
 	socket.on('authenticate',data =>{
-		sendUsernamePassword(data[0],data[1],function(i){
+		sendUsernamePassword(data[0],data[1],function(i,j){
 			if(i==1){			// match
-				io.to(socket.id).emit("auth_passed")
+				io.to(socket.id).emit("auth_parent",j)
 			}
-			else{				// mismatch
+			else if(i==2){				// mismatch
+				io.to(socket.id).emit("auth_admin")
+			}
+			else if(i==3){
+				io.to(socket.id).emit("auth_teacher",j)
+			}
+			else {
 				io.to(socket.id).emit("auth_failed")
 			}
 		})
@@ -166,6 +241,33 @@ io.sockets.on('connection',socket=>{
 		remarks(data[1],data[2],data[0])
 		
 	})
+	socket.on("get_remarks",data=>{
+		console.log("request for remarks sent ",data)
+		getRemarks(data,socket.id)
+		
+	})
+	socket.on("get_notifications",data=>{
+		console.log("request for Notifications sent ",data)
+		getNotification(data,socket.id)
+		
+	})
+	socket.on("getClasses",()=>{
+		getAllClasses(socket.id)
+		
+	})
+	socket.on("giveStu",data=>{
+		getStudentsbyClass(socket.id,data)
+		
+	})
+	socket.on("createStu",data=>{
+		createNewParent(data[0],data[1],data[2],data[3],data[4])
+		
+	})
+	socket.on("createTea",data=>{
+		createNewTeacher(data[0],data[1],data[2],data[3],data[4])
+		
+	})
+
 })
 server.listen(8000,()=> console.log('Started...'))
 
