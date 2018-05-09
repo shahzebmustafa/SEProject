@@ -1475,9 +1475,57 @@ body {
   font-family: 'Kanit', sans-serif;
 }
 
-
-
 .results_table_heading{
   width: 19%;
   margin-left: 10%;
 }
+
+
+/*Shahzeb parent home*/
+.parent_home{
+  /*background:rgba(255,255,255,0.5);*/
+  width: 75%;
+  height: 80%;
+  bottom:10%;
+  position: absolute;
+  right: 2.5%;
+  display: block;
+  margin: auto;
+  border-radius: 10px;
+  font-family: 'Kanit', sans-serif;
+  text-align: center;
+}
+
+.student_profile{
+ background:rgba(255,255,255,0.5);
+  width: 35%;
+  height: 75%;
+  bottom:10%;
+  position: absolute;
+  left: 8%;
+  display: block;
+  margin: auto;
+  border-radius: 10px;
+  font-family: 'Kanit', sans-serif;
+  text-align: center; 
+}
+
+.student_awards{
+  background:rgba(255,255,255,0.5);
+  width: 35%;
+  height: 75%;
+  bottom:10%;
+  position: absolute;
+  right: 8%;
+  display: block;
+  margin: auto;
+  border-radius: 10px;
+  font-family: 'Kanit', sans-serif;
+  text-align: center;
+}
+
+.imageFitStudent{
+  width: 60%;
+}
+/*Shahzeb parent home*/
+

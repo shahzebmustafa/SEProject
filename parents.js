@@ -1,5 +1,6 @@
 todaysDate = {'date':29,'day':"Monday",'month':"NOVEMBER",'year':2017}
-
+accountName = "Muhammad Abdul Moeed"
+accountDetails = {'name':"Muhammad Abdul Moeed",'class':'Class 3','awards':['Student of the month','Football Team Captain 2018']}
 chosenSubject = ""
 subjects = [['Physics','phy.png'],['Chemistry','chem.png'],['Biology','bio.png'],['Mathematics','math.png'],['Art','art.png'],['English','eng.png']]
 selectedResultMonth = 'January 2018'
@@ -17,6 +18,8 @@ var prevMonth = 0;
 var day = dateNow.getDate();
 var year = dateNow.getFullYear();
 
+chosen="home"
+home = 'c'
 var monthNames = ["January","February","March","April","May","June","July","August","September","October","November", "December"];
 month_name=monthNames[month]
 FebNumberOfDays = 28;
@@ -428,6 +431,25 @@ React.createElement(
 			)
 		)
 
+	}
+	else if(chosen == 'home'){
+		return React.createElement('div',{className:'parent_home'},
+			React.createElement('h1',null,'Welcome to Student Progress Portal'),
+			React.createElement('div',{className:'student_profile'},
+				React.createElement('h2',null,'Student Profile'),
+				React.createElement('img',{type:'image',src:'\\css\\moeed.jpg',className:'imageFitStudent'}),
+				React.createElement('br'),
+				React.createElement('h2',null,accountDetails.name),
+				React.createElement('h3',null,accountDetails.class)
+
+			),
+			React.createElement('div',{className:'student_awards'},
+				React.createElement('h2',null,'Awards and honors'),
+				accountDetails.awards.map(a=>{
+					return React.createElement('h3',null,a)
+				})
+			)
+		)
 	}
 }
 
