@@ -2,10 +2,14 @@ todaysDate = {'date':29,'day':"Monday",'month':"NOVEMBER",'year':2017}
 
 chosenSubject = ""
 subjects = [['Physics','phy.png'],['Chemistry','chem.png'],['Biology','bio.png'],['Mathematics','math.png'],['Art','art.png'],['English','eng.png']]
-selectedResultMonth = 'May'
+selectedResultMonth = 'January 2018'
+selectedResultMonthNum = 0
+months = ['January','February','March','April','May','June','July','August','September','October','November','December']
 
+resultsTableHeadings = ['Name ','Conducted','Total','Marks','Class Average','Remarks']
+studentResults = {'English':{'January 2018':{'Quiz 1':{'name':'Quiz 1','conducted':'13 Jan 2018','total':'10','recieved':'7','mean':'6.5','remarks':'Good'},'Quiz 2':{'name':'Quiz 2','conducted':'18 Jan 2018','total':'10','recieved':'2','mean':'7.5','reamrks':'Poor'}},'February 2018':{'Quiz 3':{'name':'Quiz 3','conducted':'9 Feb 2018','total':'10','recieved':'5','mean':'5.5','reamrks':'Good'}}},'Art':{' ':' '},'Mathematics':{' ':' '},'Physics':{' ':' '},'Chemistry':{' ':' '},'Biology':{' ':' '}}
 var dateNow=new Date();
-console.log(dateNow," dateNow")
+// console.log(dateNow," dateNow")
 var month = dateNow.getMonth();
 
 var nextMonth = 0;
@@ -29,7 +33,7 @@ var cal1=[]
 const cal_calender=dateNow=>{
 
 
-	console.log("GAGAG",dateNow)
+	// console.log("GAGAG",dateNow)
 	var month = dateNow.getMonth();
 	month_name=monthNames[month]
 	nextMonth = month+1;
@@ -72,17 +76,17 @@ const cal_calender=dateNow=>{
 			col=0
 			row++
 		}
-		console.log(counter)
-		console.log(numOfDays)
-		console.log(row," ",col)
+		// console.log(counter)
+		// console.log(numOfDays)
+		// console.log(row," ",col)
 		counter++
 		cal1[row][col]=`${counter}`
 		col++
 	}
-	console.log(cal1)
+	// console.log(cal1)
 }
 cal_calender(dateNow)
- console.log(cal1)
+ // console.log(cal1)
 //console.log(nextDate.getDay(),"test")
 
 
@@ -91,16 +95,16 @@ let noti_temp = [{'date':'4th May 2018','noti':'Testing Remarks!'},{'date':'4th 
 
 socket.on('recieve_remarks',data=>{
 	remarks_temp=data;
-	console.log(data,"helloooo")
+	// console.log(data,"helloooo")
 })
 socket.on('recieve_notifications',data=>{
 
 	noti_temp=data;
-	console.log(data,"helloooo")
+	// console.log(data,"helloooo")
 })
 const parent_screen = userN =>{
 
-	console.log(cal1,"userr")
+	// console.log(cal1,"userr")
 /*	socket.emit('get_remarks',userN)
 	socket.emit('get_notifications',userN)*/
 	var Parent = React.createClass({
@@ -164,10 +168,9 @@ const rem_type=data=>{
 		return React.createElement("img",{type:"image",className: "warn",src:"\\warn.png"})
 	}
 }
-const choice_p=()=>
-{	
+const choice_p=()=>{	
 	let rem=""
-	console.log("HERE")
+	// console.log("HERE")
 	if(chosen=="remarks")
 	{
 		return React.createElement('div',{className:'remark_body_p t_area'},
@@ -219,7 +222,7 @@ React.createElement(
 			"span",
 			{ className: "left1 button", id: "prev",onClick:ev=>{
 				month--
-				console.log(month," mon")
+				// console.log(month," mon")
 				if(month==-1){
 					month=11
 					year--
@@ -241,7 +244,7 @@ React.createElement(
 			"span",
 			{ className: "right1 button", id: "next",onClick:ev=>{
 				month++
-				console.log(month," mon")
+				// console.log(month," mon")
 
 				if(month==12){
 					month=0
@@ -331,7 +334,7 @@ React.createElement(
 	}
 	else if(chosen == "results")
 	{
-		console.log(subjects)
+		// console.log(subjects)
 		return React.createElement('div',{className : 'subjects_body_p'},
 			React.createElement('h1',{className:'subjects hTextCenter'},"Subjects"),
 			
@@ -343,27 +346,86 @@ React.createElement(
 						src:"\\css\\"+s[1],
 						id: s[0],
 						onClick : ev=>{
-							console.log(ev.target.src)
+							// console.log(ev.target.src)
 							chosen = "subjectSelection"
+							if(studentResults[ev.target.id][selectedResultMonth]){
+							}
+							else{
+								studentResults[ev.target.id][selectedResultMonth]={}
+							}
 							chosenSubject = ev.target.id
 							parent_screen()
 						}
 						}),
 					React.createElement('br'),
-					React.createElement('h2',{className : 'hTextCenter'},s[0])
+					React.createElement('text',{className : 'hTextCenter'},s[0])
 				)
 			})
 		)
 	}
 	else if(chosen == "subjectSelection"){
+		// console.log("Shahzeb",studentResults)
 		return React.createElement('div',{className:'results_body_p'},
 			React.createElement('h1',{className: 'hTextCenter'},chosenSubject),
 			React.createElement('div',{className: 'resultsMonthArea'},
-				React.createElement('div',{className: 'arrow left'}),
+				React.createElement('div',{
+					className: 'arrow left',
+					onClick: ev=>{
+						s = selectedResultMonth.split(' ')
+						if(s[0]=='January'){
+							selectedResultMonthNum = 11
+							selectedResultMonth = "December"+ " " + (s[1]-1)
+						}
+						else{
+							selectedResultMonthNum--
+							selectedResultMonth = months[selectedResultMonthNum]+" "+s[1]
+						}
+						// console.log(selectedResultMonth)
+						// console.log(chosenSubject)
+						if(studentResults[chosenSubject][selectedResultMonth]){
+						}
+						else{
+							studentResults[chosenSubject][selectedResultMonth]={}
+						}
+						parent_screen()
+					}
+				}),
 				React.createElement('h2',{className:'results_month'},selectedResultMonth),
-				React.createElement('div',{className: 'arrow right'})
+				React.createElement('div',{
+					className: 'arrow right',
+					onClick: ev=>{
+						s = selectedResultMonth.split(' ')
+						console.log(s)
+						if(s[0]=='December'){
+							selectedResultMonthNum = 0
+							selectedResultMonth = "January" +" " + (s[1]-(-1))
+						}
+						else{
+							selectedResultMonthNum++
+							selectedResultMonth = months[selectedResultMonthNum]+" "+s[1]
+						}
+						if(studentResults[chosenSubject][selectedResultMonth]){
+						}
+						else{
+							studentResults[chosenSubject][selectedResultMonth]={}
+						}
+						parent_screen()
+					}
+				})
 			),
-			React.createElement('div',{className : 'results_body_p'})
+			React.createElement('div',{className : 'results_table_p'},
+				resultsTableHeadings.map(h=>{
+					return React.createElement('td',{className:'results_table_heading'},h)
+				}),
+				Object.keys(studentResults[chosenSubject][selectedResultMonth]).map(c=>{
+					return React.createElement('tr',null,
+						Object.keys(studentResults[chosenSubject][selectedResultMonth][c]).map(p=>{
+							return React.createElement('td',null,studentResults[chosenSubject][selectedResultMonth][c][p])
+						})
+					)
+				})	
+
+			)
 		)
 
 	}

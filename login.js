@@ -157,7 +157,7 @@ const login = ()=>{
             onClick:ev=>{
               //admin_screen(userN)
               parent_screen("19100136")
-              console.log("ENYERE")
+              // console.log("ENYERE")
               socket.emit('authenticate',[userN,pass])
               
               } 
