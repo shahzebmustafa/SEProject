@@ -546,9 +546,9 @@ margin-top: 2%;
  
   margin-left: 22% !important;
   min-width: 30%;
-  font-family:"Lucida Console";
+  font-family:'Kanit' , sans-serif;
   margin-top: 7%;
-  color: rgba(255,255,240,1)
+  color: black;
 }
 
 .form{
@@ -697,9 +697,9 @@ margin-top: 2%;
   margin-left: 5.5% !important;
   margin-top: 2.3%;
   height: 5%;
-  background-color: green;
+  background-color: #00FF00;
   color: black; 
-  border: 2% solid green;
+  border: 2% #00FF00;
   border-radius: 8%;
   text-align: center;
   z-index: 1;
@@ -710,7 +710,7 @@ margin-top: 2%;
 
 .generateButton_user:hover{
     background-color: #FFFFFF;
-    color: green;
+    color: #00FF00;
 
 }
 
@@ -722,9 +722,9 @@ margin-top: 2%;
   margin-left: 5.5% !important;
   margin-top: 2.3%;
   height: 5%;
-  background-color: green;
+  background-color: #00FF00;
   color: black; 
-  border: 2% solid green;
+  border: 2% #00FF00;
   border-radius: 8%;
   text-align: center;
   z-index: 1;
@@ -733,7 +733,7 @@ margin-top: 2%;
 
 .generateButton_pass:hover{
     background-color: #FFFFFF;
-    color: green;
+    color: #00FF00;
 
 }
 
@@ -749,7 +749,7 @@ margin-top: 2%;
   background-color: #008CBA;
   border: 2px solid #008CBA;
   color: black; 
-  border-radius: 20%;
+  border-radius: 10px;
   text-align: center;
   z-index: 1;
   position: fixed; 
@@ -772,10 +772,10 @@ margin-top: 2%;
   margin-left: 50% !important;
   margin-top: 20%;
   height: 5%;
-  background-color: yellow;
-  border: 2px solid yellow;
+  background-color: #00FF00;
+  border: 2px solid #00FF00;
   color: black; 
-  border-radius: 20%;
+  border-radius: 10px;
   text-align: center;
   z-index: 1;
   position: fixed; 
@@ -786,7 +786,7 @@ margin-top: 2%;
 
 .generateButton_photo:hover{
     background-color: #FFFFFF;
-    color: #008CBA;
+    color: #00FF00;
 
 }
 

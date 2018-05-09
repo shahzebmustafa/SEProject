@@ -229,10 +229,12 @@ const choice=()=>
 		if (rem_create=="none")
 		{
 		  	return React.createElement('div',{className:"displayBox"},
-		  		React.createElement("h1",{className:"manage_acc_head"},"MANAGE ACCOUNTS"),
+		  		React.createElement("h1",{className:"manage_acc_head"},"Manage Accounts"),
 	  			React.createElement("input",{ type: "Username", className: "addUsername", placeholder: "Username" }),
 	  			React.createElement("button", {className: 'removeUserButton', onClick:ev=>{
 	              //removeAcc();
+	              rem_create ="r"
+	              admin_screen()
 	            }}, "Remove User"),
 	  			React.createElement("button", {className: 'createUserButton', onClick:ev=>{
 	              rem_create="c"
@@ -267,6 +269,9 @@ const choice=()=>
 
 						))
 					);
+		  }
+		  else if(rem_create=="r"){
+		  	
 		  }
 
 
