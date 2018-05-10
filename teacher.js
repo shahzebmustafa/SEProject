@@ -28,6 +28,15 @@ accountDetails = {'name':"Zeeshan Sadiq Khan",'class':'Department of Computer Sc
 id_click()
 home="c"
 let total_classes_arrT=[1,2,3]
+students2=[]
+socket.on("stList",rollnoArray=>{
+	for (var i=0;i<rollnoArray.length;i++){
+		students2.push({})
+		students2[i]["name"]=rollnoArray[i]["name"]
+		students2[i]["rNumber"]=rollnoArray[i]["rNumber"]
+	}
+	//students2=[{name:"zeeshan",rNumber:"19100136"},]
+})
 
 socket.on('totalClassesTeacher',data=>
 {
@@ -317,7 +326,6 @@ const choiceT=()=>
 					return React.createElement('option',{},c)
 				})
 			)
-			React.createElement('submit'{type:'submit'})
 		)
 	}
 }
