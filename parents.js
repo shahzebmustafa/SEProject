@@ -9,13 +9,16 @@ months = ['January','February','March','April','May','June','July','August','Sep
 resultsTableHeadings = ['Name ','Conducted','Total','Marks','Class Average','Remarks']
 studentResults = {'English':{'January 2018':{'Quiz 1':{'name':'Quiz 1','conducted':'13 Jan 2018','total':'10','recieved':'7','mean':'6.5','remarks':'Good'},'Quiz 2':{'name':'Quiz 2','conducted':'18 Jan 2018','total':'10','recieved':'2','mean':'7.5','reamrks':'Poor'}},'February 2018':{'Quiz 3':{'name':'Quiz 3','conducted':'9 Feb 2018','total':'10','recieved':'5','mean':'5.5','reamrks':'Good'}}},'Art':{' ':' '},'Mathematics':{' ':' '},'Physics':{' ':' '},'Chemistry':{' ':' '},'Biology':{' ':' '}}
 var dateNow=new Date();
+var dayFixed=dateNow.getDate();
 // console.log(dateNow," dateNow")
 var month = dateNow.getMonth();
+var monthFixed = dateNow.getMonth();
 
 var nextMonth = 0;
 var prevMonth = 0;
 var day = dateNow.getDate();
 var year = dateNow.getFullYear();
+var yearFixed=dateNow.getFullYear();
 
 var monthNames = ["January","February","March","April","May","June","July","August","September","October","November", "December"];
 month_name=monthNames[month]
@@ -28,8 +31,8 @@ var weekdays2 = weekdays;
 var numOfDays = dayPerMonth[month];
 var cal1=[]
 
-
-
+var userN2=""
+var abs=[]
 const cal_calender=dateNow=>{
 
 
@@ -95,18 +98,28 @@ let noti_temp = [{'date':'4th May 2018','noti':'Testing Remarks!'},{'date':'4th 
 
 socket.on('recieve_remarks',data=>{
 	remarks_temp=data;
-	// console.log(data,"helloooo")
+	console.log(data,"helloooo")
+	parent_screen(userN2)
 })
 socket.on('recieve_notifications',data=>{
 
 	noti_temp=data;
+	parent_screen(userN2)
 	// console.log(data,"helloooo")
 })
-const parent_screen = userN =>{
+socket.on('takeAtt',data=>{
 
+	abs=data
+	console.log(abs," abs")
+	parent_screen(userN2)
+	// console.log(data,"helloooo")
+})
+
+
+const parent_screen = userN =>{
+	userN2=userN
 	// console.log(cal1,"userr")
-/*	socket.emit('get_remarks',userN)
-	socket.emit('get_notifications',userN)*/
+	//socket.emit('get_notifications',userN)
 	var Parent = React.createClass({
 	  displayName: "Parent",
 
@@ -117,6 +130,13 @@ const parent_screen = userN =>{
 					React.createElement('text',{className:'acc_set'},'Account Settings'),
 					React.createElement("img",{type:"image",className: "set_pic",src:"\\settings-cog.png"}),
 					React.createElement("button",{className:"log_out",onClick:ev=>{
+						home="b"
+						notifications="b"
+						remarks="b"
+						manage_acc="b"
+						attendance = "b"
+						chosen=""
+						results = "b"
 						login()
 					}},"Log out")),
 				React.createElement("div",{ id: "sidenav" },
@@ -130,12 +150,15 @@ const parent_screen = userN =>{
 					id_click()
 					notifications="c"
 					chosen="notifications"
-					parent_screen(userN)
+					socket.emit('get_notifications',userN)
+					//parent_screen(userN)
 				} },"Notifications"),
 			  	React.createElement("button",{ className: remarks,onClick:ev=>{
 					id_click()
 					remarks="c"
 					chosen="remarks"
+					socket.emit('get_remarks',userN)
+
 					parent_screen(userN)
 
 				} },"Remarks"),
@@ -143,7 +166,8 @@ const parent_screen = userN =>{
 					id_click()
 					attendance="c"
 					chosen="attendance"
-					parent_screen(userN)
+					socket.emit("getAtt",[month_name,year,userN])
+					//parent_screen(userN)
 				} },"Attendance"),
 			  	React.createElement("button",{ className: results,onClick:ev=>{
 					id_click()
@@ -227,8 +251,17 @@ React.createElement(
 					month=11
 					year--
 				}
-				cal_calender(new Date(year,month))
-				parent_screen("19100136")
+				if (monthFixed==month && yearFixed==year){
+					cal_calender(new Date())
+
+				}
+				else{
+					cal_calender(new Date(year,month))
+					
+				}
+				month_name=monthNames[month]
+				socket.emit("getAtt",[month_name,year,userN])
+				//parent_screen("19100136")
 
 			} },
 			" \u2329 "
@@ -250,8 +283,17 @@ React.createElement(
 					month=0
 					year++
 				}
-				cal_calender(new Date(year,month))
-				parent_screen("19100136")
+				if (monthFixed==month && yearFixed==year){
+					cal_calender(new Date())
+
+				}
+				else{
+					cal_calender(new Date(year,month))
+					
+				}
+				month_name=monthNames[month]
+				socket.emit("getAtt",[month_name,year,userN])
+				//parent_screen("19100136")
 
 			} },
 			" \u232A "
@@ -311,8 +353,8 @@ React.createElement(
 				null,
 				cal1.map(s=>
 					React.createElement("tr",null,
-						s.map(t=>
-							React.createElement("td",null,t)
+						s.map((t,i)=>
+							React.createElement("td",{className:attColour(t,i)},t)
 						))
 				)
 				
@@ -395,7 +437,7 @@ React.createElement(
 					className: 'arrow right',
 					onClick: ev=>{
 						s = selectedResultMonth.split(' ')
-						console.log(s)
+						/*console.log(s)*/
 						if(s[0]=='December'){
 							selectedResultMonthNum = 0
 							selectedResultMonth = "January" +" " + (s[1]-(-1))
@@ -430,5 +472,20 @@ React.createElement(
 
 	}
 }
+const attColour=(t,i)=>{
+	//console.log(abs," here attcolor ", day)
+	if(t!=" "){
+		if(Number(t)>Number(day)||i==0||i==6){
+			return 'attGrey'
+		}
+		else if(abs.includes(t)){
+			return "attRed"
+		}
+		else{
+			return "attGreen"
+		}
+		
+	}
 
+}
 //admin_screen();

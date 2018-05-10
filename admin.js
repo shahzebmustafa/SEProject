@@ -15,14 +15,15 @@ let grade=""
 let pass2=""
 let userName=""
 let sub=""
-
+let attDate="01/01/2018"
 let rem_create="none"
 accounts = ["Parent", "Teacher"]
 
 let classes = ["Class One","Class Two","Class Three","Class Four","Class One","Class Two","Class Three","Class Four"]
 
 //let students = [{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'}]
-let students=[]
+let students = [{'name':'','rNumber':'','att':''}]
+//let students=[]
 const id_click=()=>{
 	
 	home="b"
@@ -54,7 +55,7 @@ socket.on("stList",data=>{
 	}
 
 	students=temp
-	//console.log(data)
+	//console.log(temp,"temp")
 	admin_screen()
 })
 const admin_screen = ()=>{
@@ -69,6 +70,23 @@ const admin_screen = ()=>{
 					React.createElement('text',{className:'acc_set'},'Account Settings'),
 					React.createElement("img",{type:"image",className: "set_pic",src:"\\settings-cog.png"}),
 					React.createElement("button",{className:"log_out",onClick:ev=>{
+						home="b"
+						notifications="b"
+						remarks="b"
+						manage_acc="b"
+						attendance = "b"
+						chosen=""
+						results = "b"
+
+						firstName=""
+						secondName=""
+						email_u=""
+						grade=""
+						pass2=""
+						userName=""
+						sub=""
+
+						rem_create="none"
 						login()
 					}},"Log out")),
 				React.createElement("div",{ id: "sidenav" },
@@ -82,11 +100,13 @@ const admin_screen = ()=>{
 					id_click()
 					notifications="c"
 					chosen="notifications"
+					socket.emit("getClasses")
 					admin_screen()
 				} },"Notifications"),
 			  	React.createElement("button",{ className: remarks,onClick:ev=>{
 					id_click()
 					remarks="c"
+					socket.emit("getClasses")
 					chosen="remarks"
 					admin_screen()
 
@@ -126,7 +146,7 @@ socket.on('class_students',data=>{
 const choice=()=>
 {	
 	let rem=""
-	console.log("HERE")
+	//console.log("HERE")
 	if(chosen=="remarks")
 	{
 		return React.createElement('div',{className:'remark_body'},
@@ -136,36 +156,45 @@ const choice=()=>
 				}},"Write remarks here..."),
 				React.createElement("select",{className:"selectClass"
 					,onChange:ev=>{
-					socket.emit('get_class_students',ev.target.value)
-					st=["19100136"]//CHANGE AFTER DATABASE LINk
-					console.log("changed")
+					
+					//console.log(ev.target.value,"changed")
+					socket.emit("giveStu",ev.target.value)
 					curr_cl="Class "+ev.target.value
-					admin_screen()
 				}},
 				React.createElement("option",{},curr_cl),
 				React.createElement("optgroup",{label:"Classes"},
-					total_classes_arr.map((x,i)=>
+					classes.map((x,i)=>
 						React.createElement("option",{value:x},"Class "+x)	
 						)
 					)),
 				React.createElement("select",{className:"selectStudent",
 					onChange:ev=>{
 						to=ev.target.value
+						//console.log(to,'tatatat')
 					}},
 					React.createElement("option",{},"SELECT STUDENT"),
 					React.createElement("optgroup",{label:"STUDENTS"},
-					st.map((x,i)=>
-						React.createElement("option",{value:x},x)	
+					students.map((x,i)=>
+						React.createElement("option",{value:x.rNumber},x.rNumber)	
 						)
 					)),
 				React.createElement("div",{},
 					React.createElement("button",{className:"blue_button rem_button", type:"submit",onClick:ev=>{
 					ev.preventDefault()
 
-					socket.emit("submit_remarks",["Admin",to,rem])
+					socket.emit("submit_remarks",["Admin",to,rem,1])
 				
-					console.log("RAHIJ")//send remarks to server!!!!!!!!!!!!!!
-				}},"Send"))))
+					//console.log("RAHIJ",to,rem)//send remarks to server!!!!!!!!!!!!!!
+				}},"Send Positive Remark")),
+				React.createElement("div",{},
+					React.createElement("button",{className:"blue_button rem_button", type:"submit",onClick:ev=>{
+					ev.preventDefault()
+
+					socket.emit("submit_remarks",["Admin",to,rem,0])
+				
+					//console.log("RAHIJ",to,rem)//send remarks to server!!!!!!!!!!!!!!
+				}},"Send Negitive Remark"))
+				))
 	}
 
 	else if(chosen=="notifications")
@@ -183,14 +212,19 @@ const choice=()=>
 				React.createElement("option",{},curr_cl),
 				React.createElement("optgroup",{label:"Classes"},
 					React.createElement("option",{value:"All Classes"},"All Classes"),
-					total_classes_arr.map((x,i)=>
+					classes.map((x,i)=>
 						React.createElement("option",{value:"Class "+x},"Class "+x)	
 						)
 					)),
 				React.createElement("div",{},
 					React.createElement("button",{className:"blue_button rem_button",name:"send", type:"submit",onClick:ev=>{
 					ev.preventDefault()
-					console.log(rem)//send remarks to server!!!!!!!!!!!!!!
+
+
+
+					socket.emit("submit_noti",[rem,curr_cl.substring(6)] )
+
+					//console.log("here",rem,curr_cl.substring(6))//send remarks to server!!!!!!!!!!!!!!
 				}},"Send"))))
 	}
 	else if(chosen=="attendance")
@@ -239,7 +273,10 @@ const choice=()=>
 				React.createElement('div',{},
 					React.createElement('text',{className:'date'},'Date'),
 					React.createElement('br'),
-					React.createElement('input',{type:'input',placeholder:'dd/mm/yyyy',className:'dateI'})),	
+					React.createElement('input',{type:'input',placeholder:'dd/mm/yyyy',className:'dateI',onChange:ev=>{
+						attDate=ev.target.value
+						//console.log(attDate)
+					}})),	
 				React.createElement("div",{ className: "dropdown"},
 		  			React.createElement("button",{ className: "dropbtn" },"Select Class"),
 		  			React.createElement("div",{ className: "dropdown-content" },
@@ -253,7 +290,11 @@ const choice=()=>
 				React.createElement('br'),
 				React.createElement('input',{type:'input',className:'dateI i',placeholder:'dd/mm/yyyy'}),
 				React.createElement('br'),
-				React.createElement('button',{className:'addHolidayButton'},"Add Holiday")
+				React.createElement('button',{className:'addHolidayButton'},"Add Holiday"),
+				React.createElement('br'),
+				React.createElement('button',{className:'addHolidayButton subatt',onClick:ev=>{
+					socket.emit("submit_att",[students,attDate])
+				}},"Submit")
 			)
 		)
 	}

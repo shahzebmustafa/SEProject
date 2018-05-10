@@ -13,8 +13,8 @@ var mongoose= require('mongoose')
 ID=require('./models/id2')
 CLASS=require('./models/class')
 
-
-mongoose.connect('mongodb://localhost/usernames')
+const url="mongodb+srv://moeed:group_22@cluster0-c6wha.mongodb.net/group_22"
+mongoose.connect(url)
 
 
 let check=0
@@ -34,6 +34,72 @@ let games=[]
 //})
 
 
+// ID.addAbsence("200112","May-2018",36,()=>{
+// 	console.log("absence added")
+// })
+
+// ID.getAtt("2001123",(err,id)=>{
+// 	if (err) {
+// 		console.log("error")
+// 	}
+// 	else {
+// 		console.log("att",id[0]["attendance"])
+
+// 		id=id[0]["attendance"]
+// 		//console.log(id)
+// 		var check=0
+// 		for (var i=0;i<id.length;i++){
+// 			if(id[i]["month"]=="May-2018"){
+// 				id[i]["absences"].push(27)
+// 				check=1
+// 				break
+// 			}
+// 		}
+// 		id.push({})
+// 		if (check==0) {
+// 			id[id.length-1]["month"]="May-2018"
+// 			id[id.length-1]["absences"]=[]
+// 			id[id.length-1]["absences"].push(29)
+// 		}
+// 		ID.addAbsence("2001123",id,()=>{
+// 			console.log("doneeee")
+// 		})
+// 		//console.log(id)
+// 	}
+// })
+//module.exports.addAbsence = function(username,month1,date,callback){
+
+//ID.addAbsence("2001123","May-2018",24,()=>{
+//	console.log("donee")
+//})
+
+const addAbsenceToUser = (username,month,date)=>{
+	ID.addAbsence(username,month,date,()=>{
+		console.log("absence added")
+	})
+}
+
+
+const getAttendance = (username,month,id2)=>{
+	ID.getAtt(username,(err,id)=>{
+		if (err) {
+			console.log("Error")
+		}
+		else {
+			id=id[0]["attendance"]
+			temp=[]
+			for (var i=0;i<id.length;i++){
+				if (id[i]["month"]==month) {
+					temp.push(`${id[i]["absences"][0]}`)
+				}
+			}
+			console.log(temp) /// temp has absences
+			io.to(id2).emit("takeAtt",temp)
+		}
+	})
+}
+//getAttendance("2001123","May-2018")
+
 const remarks = (toUsername,remark,from,good)=>{
 	ID.sendRemarks(toUsername,remark,from,good,()=>{
 		console.log("remark sent")
@@ -46,12 +112,30 @@ const createNewTeacher = (username,password,name,classTeaching,email)=>{
 	})
 }
 
+const addStudentToClass=(className,name,rollno)=>{
+	CLASS.addStudent(className,name,rollno,()=>{
+		console.log('student added')
+	})
+}
 
 const createNewParent = (username,password,name,classEnrolled,email)=>{
+	addStudentToClass(classEnrolled,name,username)
 	ID.addID({'username':`${username}`,'password':`${password}`,'mode':'student','name':`${name}`,'classEnrolled':`${classEnrolled}`,'email':`${email}`},()=>{
 		console.log("user added")
 	})
 }
+
+const createNewAdmin = (username,password,name)=>{
+	//addStudentToClass(classEnrolled,name,username)
+	ID.addID({'username':`${username}`,'password':`${password}`,'mode':'admin','name':`${name}`},()=>{
+		console.log("user added")
+	})
+}
+// createNewAdmin("rahij","rahij","rahij")
+//ID.addID({'username':'rahij','password':'rahij','mode':'admin'}()=>{})
+//createNewParent("2001123","123","xyz","1","dda@hotmail.com")
+
+//createNewParent("sample","sample","xyz","1","dda@hotmail.com")
 
 //createNewTeacher("200001","teacher","teacher","Ali","11C","teacher@gmail.com")
 //createNewUser("shahzeb","shahzeb","teacher","shahzeb","22"," "," ","shahzeb@gmail.com")
@@ -64,11 +148,8 @@ const createClass=(grade,classTeacher,rollnoArray)=>{
 
 }
 
-const addStudentToClass=(className,name,rollno)=>{
-	CLASS.addStudent(className,name,rollno,()=>{
-		console.log('student added')
-	})
-}
+
+
 //addStudentToClass("11C","Rahij Gillani","19100078")
 //addStudentToClass("11C","Shazeb Mustafa","19100004")
 
@@ -76,7 +157,7 @@ const addStudentToClass=(className,name,rollno)=>{
 const notifications = (toUsername,remark)=>{
 	ID.sendNotification(toUsername,remark,()=>{
 		console.log("notification sent")
-	})
+	})	
 }
 //notifications("19100136","fee challan due")
 
@@ -119,9 +200,28 @@ const getStudentsbyClass = (id,grade)=>{
 		else{
 			rollnoArray=rollnoArray[0]
 			rollnoArray=rollnoArray['students']
-			console.log(rollnoArray)
+			//console.log(rollnoArray)
 
 			io.to(id).emit("stList",rollnoArray)
+		}
+	})
+}
+//tempList=[]
+const broadcastNotification = (grade,notification)=>{
+	CLASS.getStudents(grade,function(err,rollnoArray){
+		if (err){
+			console.log('Error')
+		}
+		else{
+			//tempList=[]
+			rollnoArray=rollnoArray[0]
+			rollnoArray=rollnoArray['students']
+			console.log(rollnoArray)
+			for(var i=0;i<rollnoArray.length;i++){
+				notifications(rollnoArray[i]["rNumber"],notification)
+			}
+
+			//io.to(id).emit("stList",rollnoArray)
 		}
 	})
 }
@@ -144,7 +244,7 @@ const getAllClasses = id=>{
 		}
 	})
 }
-getAllClasses()
+//getAllClasses()
 
 const getRemarks = (username,id)=>{
 	ID.getRemarks(username,function(err,remarksArray){
@@ -235,10 +335,17 @@ io.sockets.on('connection',socket=>{
 			}
 		})
 	})
+	socket.on("submit_noti",data=>{
+		console.log("recived notifications for",data[1])
+		//console.log(data[1])
+		//notifications(data[0],data[1])
+		//rem,curr_cl.substring(6)
+		broadcastNotification(data[1],data[0])
+	})
 	socket.on("submit_remarks",data=>{
 		console.log("recived remarks for")
 		console.log(data[1])
-		remarks(data[1],data[2],data[0])
+		remarks(data[1],data[2],data[0],data[3])
 		
 	})
 	socket.on("get_remarks",data=>{
@@ -251,13 +358,19 @@ io.sockets.on('connection',socket=>{
 		getNotification(data,socket.id)
 		
 	})
+	socket.on("submit_att",data=>{
+		//socket.emit("submit_att",[students,attDate])
+		console.log("rcvd",data[0])
+		//////////////////////////////////////////////////////////////////////////////// 
+	})
+
 	socket.on("getClasses",()=>{
 		getAllClasses(socket.id)
 		
 	})
 	socket.on("giveStu",data=>{
 		getStudentsbyClass(socket.id,data)
-		
+			
 	})
 	socket.on("createStu",data=>{
 		createNewParent(data[0],data[1],data[2],data[3],data[4])
@@ -267,7 +380,11 @@ io.sockets.on('connection',socket=>{
 		createNewTeacher(data[0],data[1],data[2],data[3],data[4])
 		
 	})
-
+	socket.on("getAtt",data=>{
+		getAttendance(data[2],data[0]+"-"+data[1],socket.id)
+	//socket.emit("getAtt",[month_name,year,userN])
+		
+	})
 })
 server.listen(8000,()=> console.log('Started...'))
 

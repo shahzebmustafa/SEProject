@@ -53,6 +53,11 @@ var idSchema=mongoose.Schema({
 			type: Date,
 			default: Date.now
 		}
+	}],
+
+	attendance:[{
+		month:String,
+		absences:[]
 	}]
 
 	//result: {{}}
@@ -91,4 +96,12 @@ module.exports.sendNotification = function(username,remark,callback){
 
 module.exports.getNotifications = function(username,callback){
 	ID.find({'username':`${username}`},{'notifications':1,_id:0},callback)
+}
+
+module.exports.addAbsence = function(username,month1,date,callback){
+	ID.update({username:`${username}`},{$push:{attendance:{month:`${month1}`,absences:date}}},callback)
+}
+
+module.exports.getAtt = function(username,callback){
+	ID.find({'username':`${username}`},{'attendance':1,_id:0},callback)
 }

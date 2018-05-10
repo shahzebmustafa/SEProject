@@ -99,8 +99,9 @@ login()
 */
 let userN=""
 let pass=""
+let pop=0
 const socket = io()
-/*socket.on("auth_admin",data=>
+socket.on("auth_admin",data=>
 {
   console.log("admin logged in")
   admin_screen()
@@ -114,21 +115,20 @@ socket.on("auth_parent",data=>
 
 })
 
-})*/
-
-/*socket.on("auth_teacher",data=>
+socket.on("auth_teacher",data=>
 {
-  parent_screen()
+  teacher_screen()
 })
 
 socket.on("auth_failed",data=>
 {
+  pop=1
   login()
 })
 socket.on("auth_teacher",data=>
 {
   admin_screen()
-})*/
+})
 const login = ()=>{
 
   var Login = React.createClass({
@@ -164,12 +164,8 @@ const login = ()=>{
             onClick:ev=>{
               //admin_screen()
               //teacher_screen()
-              parent_screen("19100136")
+              //parent_screen("19100136")
               console.log("ENYERE")
-
-              //admin_screen(userN)
-              parent_screen("19100136")
-              // console.log("ENYERE")
 
               socket.emit('authenticate',[userN,pass])
               
@@ -180,7 +176,7 @@ const login = ()=>{
             style:{color:"white"},
             id: "forgot_pass",
             onClick:ev=>{
-              console.log("raju")
+              //console.log("raju")
             }
           },"Forgot Password?")),
           React.createElement('div',{id:'strip'},

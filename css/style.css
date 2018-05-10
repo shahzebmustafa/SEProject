@@ -272,8 +272,10 @@ margin-top: 2%;
   display:block;
 }
 .rem_button{
+  margin-bottom: 1%;
   margin-top: 2%;
-  left: 76%;
+
+  left: 64%;
 }
 .selectStudent{
   position: relative;
@@ -1474,4 +1476,19 @@ body {
 .results_table_heading{
   width: 19%;
   margin-left: 10%;
+}
+
+.subatt{
+  margin-top: 80%;
+  margin-bottom: 10%;
+}
+
+.attGrey{
+  background-color: grey;
+}
+.attGreen{
+  background-color: green;
+}
+.attRed{
+  background-color: red;
 }
