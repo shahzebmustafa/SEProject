@@ -25,17 +25,18 @@ accountDetails = {'name':"Zeeshan Sadiq Khan",'class':'Department of Computer Sc
 	results="b"
 }
 */
+students2=[]
+students2=[{'name':"Zeeshan Sadiq Khan",'rNumber':"19100136"},{'name':'Zainab Agha','rNumber':'19100062'},{'name':'Shahzeb','rNumber':'19100004'}]
+
 id_click()
 home="c"
 let total_classes_arrT=[1,2,3]
-students2=[]
 socket.on("stList",rollnoArray=>{
 	for (var i=0;i<rollnoArray.length;i++){
 		students2.push({})
 		students2[i]["name"]=rollnoArray[i]["name"]
 		students2[i]["rNumber"]=rollnoArray[i]["rNumber"]
 	}
-	//students2=[{name:"zeeshan",rNumber:"19100136"},]
 })
 
 socket.on('totalClassesTeacher',data=>
@@ -309,23 +310,43 @@ const choiceT=()=>
 	}
 	else if(chosen == 'results'){
 		return React.createElement('div',{className:'results_body_t'},
-			React.createElement('select',{
-					display:'Select Class',
-					onChange: ev => {
-						resultUpdateClass = ev.target.value
-						if(resultUpdateClass == 'Select Class'){
+				React.createElement('select',{
+						value:'Select Class',
+						className:'dropDown_result_t',
+						onChange: ev => {
+							resultUpdateClass = ev.target.value
+							if(resultUpdateClass == 'Select Class'){
 
+							}
+							else{
+		    					socket.emit("giveStu",c)
+							}
 						}
-						else{
-	    					socket.emit("giveStu",c)
-						}
-					}
-				},
-				React.createElement('option',{},'Select Class'),
-				accountDetails['classes'].map(c=>{
-					return React.createElement('option',{},c)
-				})
-			)
+					},
+					React.createElement('option',{},'Select Class'),
+					accountDetails['classes'].map(c=>{
+						return React.createElement('option',{},c)
+					})
+				),
+				React.createElement('input',{type:'input',className:'input_compname',placeholder:'Component'}),
+				React.createElement('input',{type:'input',className:'input_totMarks',placeholder:'Total'}),
+				React.createElement('br'),
+				React.createElement('table',{className:"resultsUpload_t"},					
+					React.createElement('tr',null,
+						React.createElement('td',null,'Name'),
+						React.createElement('td',null,'Roll Number'),
+						React.createElement('td',{className:'input_marks'},'Marks')
+					),
+					students2.map(s=>{
+						return React.createElement('tr',null,
+							React.createElement('td',{className:'marks_name_t'},s['name']),
+							React.createElement('td',{className:'marks_rNum_t'},s['rNumber']),
+							React.createElement('input',{type:'input',className:'input_marks'})
+						)
+					})
+				),
+			React.createElement('br'),
+			React.createElement('button',{className:'submit_res_t'},"Submit")
 		)
 	}
 }
