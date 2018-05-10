@@ -16,11 +16,14 @@ let pass2=""
 let userName=""
 let sub=""
 let attDate="01/01/2018"
+
+let oldPass = ""
+let newPass = ""
 let rem_create="none"
 accounts = ["Parent", "Teacher"]
-
+dict_removeAcc = {'19100004': {'name': 'Shahzeb Mustafa', 'grade': '7', 'date': '01 October 2004'}}
 let classes = ["Class One","Class Two","Class Three","Class Four","Class One","Class Two","Class Three","Class Four"]
-
+removeThis = '19100004'
 //let students = [{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'},{'name':'Shahzeb Mustafa','rNumber':'19100004','att':'P'},{'name':'Zeeshan Khan','rNumber':'19100136','att':'P'},{'name':'Zainab Agha','rNumber':'19100062','att':'P'}]
 let students = [{'name':'','rNumber':'','att':''}]
 //let students=[]
@@ -67,7 +70,10 @@ const admin_screen = ()=>{
 		return React.createElement("div",{ id: "admin" },
 				React.createElement('div',{id:'home_back'}),
 				React.createElement('div',{className:"striptop"},
-					React.createElement('text',{className:'acc_set'},'Account Settings'),
+					React.createElement('text',{className:'acc_set', onClick:ev=>{
+						chosen = "accSet"
+						admin_screen()
+					}},'Account Settings'),
 					React.createElement("img",{type:"image",className: "set_pic",src:"\\settings-cog.png"}),
 					React.createElement("button",{className:"log_out",onClick:ev=>{
 						home="b"
@@ -307,6 +313,9 @@ const choice=()=>
 	  			React.createElement("input",{ type: "Username", className: "addUsername", placeholder: "Username" }),
 	  			React.createElement("button", {className: 'removeUserButton', onClick:ev=>{
 	              //removeAcc();
+	              rem_create="r"
+	              admin_screen()
+
 	            }}, "Remove User"),
 	  			React.createElement("button", {className: 'createUserButton', onClick:ev=>{
 	              rem_create="c"
@@ -427,6 +436,66 @@ const choice=()=>
 						))
 					);
 		  }
+
+
+
+
+
+
+
+
+		  else if (rem_create=="r"){
+		  	return React.createElement('div',{className:"removeBox"},
+					React.createElement('div', {className: "popUp"},
+						React.createElement('div',{className:"smallpopUp"},
+						React.createElement('div',{className:"borderBox"},
+							React.createElement('h1', {className: 'borderBox_h'}, 'Student Profile'),
+							React.createElement('h1', {className: 'borderBox_name'},  'Name: ' +dict_removeAcc[removeThis].name),
+							React.createElement('h1', {className: 'borderBox_grade'},  'Grade: '+dict_removeAcc[removeThis].grade),
+							React.createElement('h1', {className: 'borderBox_date'},  'Enrolled: '+dict_removeAcc[removeThis].date)),
+						React.createElement('div', {className: 'whiteBox'},
+							React.createElement('h1', {className: 'whiteBox_warn'}, 'Are you sure you want to remove this profile from the database?'),
+							React.createElement('button',{className: 'removeConfirm', onClick:ev=>{
+								chosen = "successR"
+								admin_screen()
+							}}, 'Continue Removing?'),
+							React.createElement('button',{className: 'cancelButton', onClick:ev=>{
+								chosen = "manage_acc"
+								rem_create = "none"
+								admin_screen()
+							}}, 'Cancel'))
+
+							)))
+
+
+		  }
+		}
+
+
+
+	else if(chosen == "successR"){
+		return React.createElement('div',{className:"removeBox"},
+			React.createElement('div', {className: "popUp"},
+				React.createElement('div',{className:"smallpopUp"},
+					React.createElement('h1', {className: "sRemove"}, 'The user has been successfully removed.')
+							)))
+	}
+	else if(chosen == "accSet"){
+		return React.createElement('div',{className:"removeBox"},
+			React.createElement('div', {className: "popUp"},
+				React.createElement('div',{className:"smallpopUp"},
+					React.createElement('text',{className: 'account_h'}, 'Change Password'),
+					React.createElement('input',{type: 'text',className:'acc_form1',placeholder: 'Enter Old Password', onChange:ev=>{
+						oldPass = ev.target.value
+					}}),
+					React.createElement('input',{type: 'text',className:'acc_form2',placeholder: 'Enter New Password', onChange:ev=>{
+						newPass = ev.target.value
+					}}),
+					
+					React.createElement('button',{className: 'submitButton'}, 'Submit')
+					
+					)
+				))
 
 
 	}

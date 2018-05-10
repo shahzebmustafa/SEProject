@@ -1471,8 +1471,6 @@ body {
   font-family: 'Kanit', sans-serif;
 }
 
-
-
 .results_table_heading{
   width: 19%;
   margin-left: 10%;
@@ -1492,3 +1490,374 @@ body {
 .attRed{
   background-color: red;
 }
+
+/*Shahzeb parent home*/
+.parent_home{
+  /*background:rgba(255,255,255,0.5);*/
+  width: 75%;
+  height: 80%;
+  bottom:10%;
+  position: absolute;
+  right: 2.5%;
+  display: block;
+  margin: auto;
+  border-radius: 10px;
+  font-family: 'Kanit', sans-serif;
+  text-align: center;
+}
+
+.student_profile{
+ background:rgba(255,255,255,0.5);
+  width: 35%;
+  height: 75%;
+  bottom:10%;
+  position: absolute;
+  left: 8%;
+  display: block;
+  margin: auto;
+  border-radius: 10px;
+  font-family: 'Kanit', sans-serif;
+  text-align: center; 
+}
+
+.student_awards{
+  background:rgba(255,255,255,0.5);
+  width: 35%;
+  height: 75%;
+  bottom:10%;
+  position: absolute;
+  right: 8%;
+  display: block;
+  margin: auto;
+  border-radius: 10px;
+  font-family: 'Kanit', sans-serif;
+  text-align: center;
+}
+
+.imageFitStudent{
+  width: 60%;
+}
+/*Shahzeb parent home*/
+
+
+
+.results_body_t{
+
+  /*background:rgba(255,255,255,0.5);*/
+  min-width: 75%;
+  height: 75%;
+  bottom:8%;
+  position: fixed;
+  right: 2.5%;
+  /*resize: both;*/
+  border-radius: 10px;
+  display: inline-block;
+  font-family: 'Kanit', sans-serif;
+}
+
+
+.cancelButton{
+    text-align:center;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  font-size: 100%;
+  margin: auto;
+  min-width: 42%;
+  margin-top: 2%;
+  height: 10%;
+  background-color: #A9A9A9;
+  color: black; 
+  border: 2px solid #A9A9A9;
+  border-radius: 8px;
+  text-align: center;
+  /*z-index: 1;*/
+  /*align-content: center;*/
+  position: absolute;
+  display: block;
+  
+  }
+
+
+.resultsUpload_t{
+  background:rgba(255,255,255,0.5);
+  width: 80%;
+  height: 62.5%;
+  bottom: 15%;
+  left: 10%;
+  position: absolute;
+  resize: both;
+  border-radius: 10px;
+  display: inline-block;
+  font-family: 'Kanit', sans-serif;
+}
+
+
+.dropDown_result_t{
+  /*position: fixed;*/
+  width:15%;
+  height:5%;
+  margin-left:10%;
+  margin-top:6.5%;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+/*<Shahzeb: Results parent*/
+
+/*Zainab remove screen*/
+
+.borderBox{
+  width: 40%;
+  height: 70%;
+  position: relative;
+  margin-left: 7%;
+  margin-top: 9%;
+  /*display: inline-block;*/
+  color: #D3D3D3;
+  border: 7px solid #D3D3D3; 
+  font-family: 'Kanit' sans-serif;
+
+
+}
+
+.borderBox_h{
+  color: #008CBA;
+  font-family: 'Kanit' sans-serif;
+  font-size: 180%;
+
+  text-align: center;
+}
+
+.borderBox_name{
+  color: black;
+  font-family: 'Kanit' sans-serif;
+  font-size: 150%;
+  text-align: center;
+  margin-top: 20%;
+
+}
+
+.borderBox_grade{
+  color: black;
+  font-family: 'Kanit' sans-serif;
+  font-size: 150%;
+  text-align: center;
+
+  }
+
+.borderBox_date{
+  color: black;
+  font-family: 'Kanit' sans-serif;
+  font-size: 150%;
+  text-align: center;
+  }
+
+  .whiteBox{
+ width: 40%;
+  position: absolute;
+  background:#D3D3D3;
+  height:70%;
+  margin-left: 50%;
+  bottom: 15%;
+
+  }
+
+  .whiteBox_warn{
+  color: black;
+  font-family: 'Kanit' sans-serif;
+  font-size: 150%;
+  text-align: center;
+  margin-top: 20%;
+  display: block;
+  }
+
+  .removeConfirm{
+  text-align:center;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  font-size: 100%;
+  margin: auto;
+  min-width: 42%;
+  margin-top: 2%;
+  height: 10%;
+  background-color: #ff4500;
+  color: black; 
+  border: 2px solid #ff4500;
+  border-radius: 8px;
+  text-align: center;
+  /*z-index: 1;*/
+  /*align-content: center;*/
+  position: relative;
+  display: block;
+  
+  }
+
+  .removeConfirm:hover{
+    background-color: #FFFFFF;
+    color: #ff4500;
+
+  }
+
+.cancelButton{
+    text-align:center;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  font-size: 100%;
+  margin: auto;
+  min-width: 42%;
+  margin-top: 2%;
+  height: 10%;
+  background-color: #A9A9A9;
+  color: black; 
+  border: 2px solid #A9A9A9;
+  border-radius: 8px;
+  text-align: center;
+  /*z-index: 1;*/
+  /*align-content: center;*/
+  position: relative;
+  display: block;
+  
+  }
+
+  .cancelButton:hover{
+    background-color: #FFFFFF;
+    color: #A9A9A9;
+
+}
+
+.sRemove{
+  color: black;
+  font-family: 'Kanit' sans-serif;
+  font-size: 150%;
+  text-align: center;
+  margin-top: 20%;
+}
+
+/*Zainab Account Setting*/
+
+.account_h{
+  position: relative;
+  text-align: center;
+  font-family:"Lucida Console";
+  color: black;
+  margin-top: 8%;
+  font-size: 150%;
+  color: black;
+  display: block;
+}
+
+.acc_form1{
+  width: 30%;
+  margin-left: 35% !important;
+  margin-top: 15%;
+  height: 5%;
+}
+
+.acc_form2{
+  width: 30%;
+  margin-left: 35% !important;
+  margin-top: 4%;
+  height: 5%;
+}
+
+.submitButton{
+  text-align:center;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  font-size: 100%;
+  margin-left: 35% !important;
+  min-width: 30%;
+  margin-top: 5%;
+  height: 7%;
+  background-color: #008CBA;
+  color: black; 
+  border: 2px solid #008CBA;
+  border-radius: 5px;
+  text-align: center;
+  z-index: 1;
+  position: relative;
+}
+
+.submitButton:hover{
+    background-color: #FFFFFF;
+    color: #008CBA;
+
+}
+
+.contact_t{
+  position: relative;
+  text-align: center;
+  font-family:"Lucida Console";
+  color: black;
+  margin-top: 8%;
+  font-size: 150%;
+  color: white;
+  display: block;
+}
+
+.about_t{
+  position: relative;
+  text-align: center;
+  font-family:"Lucida Console";
+  color: black;
+  margin-top: 8%;
+  font-size: 100%;
+  color: white;
+  display: block;
+}
+
+.input_compname{
+  width:15%;
+  height:3%;
+  position: fixed;
+  margin-left: 8.5%;
+  margin-top:5%;
+  border-radius: 5px;
+  display: inline-block;
+
+}
+
+.input_totMarks{
+  width:15%;
+  height:3%;
+  position: fixed;
+  margin-top:5%;
+  right:10%;
+  border-radius: 5px;
+  display: inline-block;
+
+
+}
+
+.submit_res_t{
+ width: 15%;
+  height: 5%;
+  bottom: 5%;
+  right: 10%;
+  position: absolute;
+  border-radius: 5px;
+  background: rgba(0, 140, 186,0.8)
+}
+
+.input_marks{
+  width: 20%;
+  right: 5%;
+  margin-bottom: 5%;
+  position: absolute;
+  border-radius: 5px;
+}
+
+
+.marks_name_t{
+  min-width: 20%;
+}
+
+.marks_rNum_t{
+  min-width: 30%;
+}
+
+>>>>>>> 06ebb8ec53c02ea147e22a1d9db308c95a7960c7
