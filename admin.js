@@ -15,7 +15,8 @@ let grade=""
 let pass2=""
 let userName=""
 let sub=""
-
+let oldPass = ""
+let newPass = ""
 let rem_create="none"
 accounts = ["Parent", "Teacher"]
 dict_removeAcc = {'19100004': {'name': 'Shahzeb Mustafa', 'grade': '7', 'date': '01 October 2004'}}
@@ -66,7 +67,10 @@ const admin_screen = ()=>{
 		return React.createElement("div",{ id: "admin" },
 				React.createElement('div',{id:'home_back'}),
 				React.createElement('div',{className:"striptop"},
-					React.createElement('text',{className:'acc_set'},'Account Settings'),
+					React.createElement('text',{className:'acc_set', onClick:ev=>{
+						chosen = "accSet"
+						admin_screen()
+					}},'Account Settings'),
 					React.createElement("img",{type:"image",className: "set_pic",src:"\\settings-cog.png"}),
 					React.createElement("button",{className:"log_out",onClick:ev=>{
 						login()
@@ -428,10 +432,29 @@ const choice=()=>
 
 	else if(chosen == "successR"){
 		return React.createElement('div',{className:"removeBox"},
-					React.createElement('div', {className: "popUp"},
-						React.createElement('div',{className:"smallpopUp"},
-							React.createElement('h1', {className: "sRemove"}, 'The user has been successfully removed.')
+			React.createElement('div', {className: "popUp"},
+				React.createElement('div',{className:"smallpopUp"},
+					React.createElement('h1', {className: "sRemove"}, 'The user has been successfully removed.')
 							)))
+	}
+	else if(chosen == "accSet"){
+		return React.createElement('div',{className:"removeBox"},
+			React.createElement('div', {className: "popUp"},
+				React.createElement('div',{className:"smallpopUp"},
+					React.createElement('text',{className: 'account_h'}, 'Change Password'),
+					React.createElement('input',{type: 'text',className:'acc_form1',placeholder: 'Enter Old Password', onChange:ev=>{
+						oldPass = ev.target.value
+					}}),
+					React.createElement('input',{type: 'text',className:'acc_form2',placeholder: 'Enter New Password', onChange:ev=>{
+						newPass = ev.target.value
+					}}),
+					
+					React.createElement('button',{className: 'submitButton'}, 'Submit')
+					
+					)
+				))
+
+
 	}
 }
 

@@ -1540,6 +1540,29 @@ body {
 }
 
 
+.cancelButton{
+    text-align:center;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  font-size: 100%;
+  margin: auto;
+  min-width: 42%;
+  margin-top: 2%;
+  height: 10%;
+  background-color: #A9A9A9;
+  color: black; 
+  border: 2px solid #A9A9A9;
+  border-radius: 8px;
+  text-align: center;
+  /*z-index: 1;*/
+  /*align-content: center;*/
+  position: absolute;
+  display: block;
+  
+  }
+
+
 .resultsUpload_t{
   background:rgba(255,255,255,0.5);
   width: 80%;
@@ -1562,6 +1585,213 @@ body {
   margin-top:6.5%;
   border-radius: 5px;
   display: inline-block;
+}
+
+/*<Shahzeb: Results parent*/
+
+/*Zainab remove screen*/
+
+.borderBox{
+  width: 40%;
+  height: 70%;
+  position: relative;
+  margin-left: 7%;
+  margin-top: 9%;
+  /*display: inline-block;*/
+  color: #D3D3D3;
+  border: 7px solid #D3D3D3; 
+  font-family: 'Kanit' sans-serif;
+
+
+}
+
+.borderBox_h{
+  color: #008CBA;
+  font-family: 'Kanit' sans-serif;
+  font-size: 180%;
+
+  text-align: center;
+}
+
+.borderBox_name{
+  color: black;
+  font-family: 'Kanit' sans-serif;
+  font-size: 150%;
+  text-align: center;
+  margin-top: 20%;
+
+}
+
+.borderBox_grade{
+  color: black;
+  font-family: 'Kanit' sans-serif;
+  font-size: 150%;
+  text-align: center;
+
+  }
+
+.borderBox_date{
+  color: black;
+  font-family: 'Kanit' sans-serif;
+  font-size: 150%;
+  text-align: center;
+  }
+
+  .whiteBox{
+ width: 40%;
+  position: absolute;
+  background:#D3D3D3;
+  height:70%;
+  margin-left: 50%;
+  bottom: 15%;
+
+  }
+
+  .whiteBox_warn{
+  color: black;
+  font-family: 'Kanit' sans-serif;
+  font-size: 150%;
+  text-align: center;
+  margin-top: 20%;
+  display: block;
+  }
+
+  .removeConfirm{
+  text-align:center;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  font-size: 100%;
+  margin: auto;
+  min-width: 42%;
+  margin-top: 2%;
+  height: 10%;
+  background-color: #ff4500;
+  color: black; 
+  border: 2px solid #ff4500;
+  border-radius: 8px;
+  text-align: center;
+  /*z-index: 1;*/
+  /*align-content: center;*/
+  position: relative;
+  display: block;
+  
+  }
+
+  .removeConfirm:hover{
+    background-color: #FFFFFF;
+    color: #ff4500;
+
+  }
+
+.cancelButton{
+    text-align:center;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  font-size: 100%;
+  margin: auto;
+  min-width: 42%;
+  margin-top: 2%;
+  height: 10%;
+  background-color: #A9A9A9;
+  color: black; 
+  border: 2px solid #A9A9A9;
+  border-radius: 8px;
+  text-align: center;
+  /*z-index: 1;*/
+  /*align-content: center;*/
+  position: relative;
+  display: block;
+  
+  }
+
+  .cancelButton:hover{
+    background-color: #FFFFFF;
+    color: #A9A9A9;
+
+}
+
+.sRemove{
+  color: black;
+  font-family: 'Kanit' sans-serif;
+  font-size: 150%;
+  text-align: center;
+  margin-top: 20%;
+}
+
+/*Zainab Account Setting*/
+
+.account_h{
+  position: relative;
+  text-align: center;
+  font-family:"Lucida Console";
+  color: black;
+  margin-top: 8%;
+  font-size: 150%;
+  color: black;
+  display: block;
+}
+
+.acc_form1{
+  width: 30%;
+  margin-left: 35% !important;
+  margin-top: 15%;
+  height: 5%;
+}
+
+.acc_form2{
+  width: 30%;
+  margin-left: 35% !important;
+  margin-top: 4%;
+  height: 5%;
+}
+
+.submitButton{
+  text-align:center;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  font-size: 100%;
+  margin-left: 35% !important;
+  min-width: 30%;
+  margin-top: 5%;
+  height: 7%;
+  background-color: #008CBA;
+  color: black; 
+  border: 2px solid #008CBA;
+  border-radius: 5px;
+  text-align: center;
+  z-index: 1;
+  position: relative;
+}
+
+.submitButton:hover{
+    background-color: #FFFFFF;
+    color: #008CBA;
+
+}
+
+.contact_t{
+  position: relative;
+  text-align: center;
+  font-family:"Lucida Console";
+  color: black;
+  margin-top: 8%;
+  font-size: 150%;
+  color: white;
+  display: block;
+}
+
+.about_t{
+  position: relative;
+  text-align: center;
+  font-family:"Lucida Console";
+  color: black;
+  margin-top: 8%;
+  font-size: 100%;
+  color: white;
+  display: block;
 }
 
 .input_compname{
@@ -1613,3 +1843,4 @@ body {
 .marks_rNum_t{
   min-width: 30%;
 }
+
