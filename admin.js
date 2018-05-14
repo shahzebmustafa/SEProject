@@ -36,7 +36,9 @@ const id_click=()=>{
 	attendance = "b"
 	results="b"
 }
-
+id_click()
+home="c"
+chosen="home"
 let total_classes_arr=[1,2,3]
 socket.on('totalClasses',data=>
 {
@@ -91,7 +93,7 @@ const admin_screen = ()=>{
 						pass2=""
 						userName=""
 						sub=""
-
+						students = [{'name':'','rNumber':'','att':''}]
 						rem_create="none"
 						login()
 					}},"Log out")),
@@ -202,7 +204,16 @@ const choice=()=>
 				}},"Send Negitive Remark"))
 				))
 	}
+	else if(chosen == "home"){
+		return React.createElement('div',{className:'admin_home_body'},
+			React.createElement('h1',null,'Welcome to Student Progress Portal'),
+			React.createElement('div',{className:'admin_profile'},
+				React.createElement('h2',null,'Administrator Mode'),
+				React.createElement('img',{type:'image',src:'\\css\\admin.jpeg',className:'round'})
 
+			)
+		)
+	}
 	else if(chosen=="notifications")
 	{
 		return React.createElement('div',{className:'remark_body'},
@@ -237,7 +248,7 @@ const choice=()=>
 	{
 
 		return React.createElement('div',{className:'displayPanel'},
-			React.createElement('h1',{className:'head_att'},'Attendance'),
+			React.createElement('h1',{className:'hTextCenter'},'Attendance'),
 			React.createElement('div',{className:'attendancePanel'},
 				React.createElement('div',{className:'rno'},
 					students.map(s=>{
@@ -299,7 +310,7 @@ const choice=()=>
 				React.createElement('button',{className:'addHolidayButton'},"Add Holiday"),
 				React.createElement('br'),
 				React.createElement('button',{className:'addHolidayButton subatt',onClick:ev=>{
-					socket.emit("submit_att",[students,attDate])
+					socket.emit("submit_att",[students,attDate[0],attDate[1],attDate[3],attDate[4]])
 				}},"Submit")
 			)
 		)
@@ -327,7 +338,6 @@ const choice=()=>
 	            }}, "Create New Teacher")
 
 	  		);
-		 
 		}
 		else if (rem_create=="c"){
 			//return create()
@@ -436,14 +446,6 @@ const choice=()=>
 						))
 					);
 		  }
-
-
-
-
-
-
-
-
 		  else if (rem_create=="r"){
 		  	return React.createElement('div',{className:"removeBox"},
 					React.createElement('div', {className: "popUp"},
@@ -496,8 +498,6 @@ const choice=()=>
 					
 					)
 				))
-
-
 	}
 }
 

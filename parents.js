@@ -7,8 +7,8 @@ selectedResultMonth = 'January 2018'
 selectedResultMonthNum = 0
 months = ['January','February','March','April','May','June','July','August','September','October','November','December']
 
-resultsTableHeadings = ['Name ','Conducted','Total','Marks','Class Average','Remarks']
-studentResults = {'English':{'January 2018':{'Quiz 1':{'name':'Quiz 1','conducted':'13 Jan 2018','total':'10','recieved':'7','mean':'6.5','remarks':'Good'},'Quiz 2':{'name':'Quiz 2','conducted':'18 Jan 2018','total':'10','recieved':'2','mean':'7.5','reamrks':'Poor'}},'February 2018':{'Quiz 3':{'name':'Quiz 3','conducted':'9 Feb 2018','total':'10','recieved':'5','mean':'5.5','reamrks':'Good'}}},'Art':{' ':' '},'Mathematics':{' ':' '},'Physics':{' ':' '},'Chemistry':{' ':' '},'Biology':{' ':' '}}
+resultsTableHeadings = ['Name ','Total','Marks','Class Average','Remarks']
+studentResults = {'English':{'January 2018':{'Quiz 1':{'name':'Quiz 1','total':'10','recieved':'7','mean':'6.5','remarks':'Good'},'Quiz 2':{'name':'Quiz 2','conducted':'18 Jan 2018','total':'10','recieved':'2','mean':'7.5','reamrks':'Poor'}},'February 2018':{'Quiz 3':{'name':'Quiz 3','conducted':'9 Feb 2018','total':'10','recieved':'5','mean':'5.5','reamrks':'Good'}}},'Art':{' ':' '},'Mathematics':{' ':' '},'Physics':{' ':' '},'Chemistry':{' ':' '},'Biology':{' ':' '}}
 var dateNow=new Date();
 var dayFixed=dateNow.getDate();
 // console.log(dateNow," dateNow")
@@ -20,7 +20,9 @@ var prevMonth = 0;
 var day = dateNow.getDate();
 var year = dateNow.getFullYear();
 var yearFixed=dateNow.getFullYear();
-
+let oldPassT = ""
+let newPassT = ""
+id_click()
 chosen="home"
 home = 'c'
 var monthNames = ["January","February","March","April","May","June","July","August","September","October","November", "December"];
@@ -99,6 +101,33 @@ cal_calender(dateNow)
 let remarks_temp = [{'from':'Admin','subject':'SE','date':'4th May 2018','type':'bad','remark':'Testing Remarks!'},{'from':'Rahij','subject':'CS','date':'4th May 2018','type':'good','remark':'Testing Remarks!'},{'from':'Shahzeb','subject':'Chem','date':'4th May 2018','type':'bad','remark':'kill me!'}]
 let noti_temp = [{'date':'4th May 2018','noti':'Testing Remarks!'},{'date':'4th May 2018','notification':'HELLO!'}]
 
+socket.on('marksHere',data=>{
+	studentResults=data
+	if(!('Chemistry' in studentResults)){
+		studentResults['Chemistry']={}
+	}
+	if(!('Mathematics' in studentResults)){
+		studentResults['Mathematics']={}
+	}
+	if(!('Art' in studentResults)){
+		studentResults['Art']={}
+	}
+	if(!('Biology' in studentResults)){
+		studentResults['Biology']={}
+	}
+	if(!('English' in studentResults)){
+		studentResults['English']={}
+	}
+	if(!('Chemistry' in studentResults)){
+		studentResults['Chemistry']={}
+	}
+	if(!('Physics' in studentResults)){
+		studentResults['Physics']={}
+	}
+
+	parent_screen(userN2)
+})
+
 socket.on('recieve_remarks',data=>{
 	remarks_temp=data;
 	console.log(data,"helloooo")
@@ -130,7 +159,10 @@ const parent_screen = userN =>{
 		return React.createElement("div",{ id: "admin" },
 				React.createElement('div',{id:'home_back'}),
 				React.createElement('div',{className:"striptop"},
-					React.createElement('text',{className:'acc_set'},'Account Settings'),
+					React.createElement('text',{className:'acc_set', onClick:ev=>{
+						chosen = "accSet"
+						parent_screen(userN)
+					}},'Account Settings'),
 					React.createElement("img",{type:"image",className: "set_pic",src:"\\settings-cog.png"}),
 					React.createElement("button",{className:"log_out",onClick:ev=>{
 						home="b"
@@ -160,6 +192,7 @@ const parent_screen = userN =>{
 					id_click()
 					remarks="c"
 					chosen="remarks"
+					console.log(userN)
 					socket.emit('get_remarks',userN)
 
 					parent_screen(userN)
@@ -175,6 +208,7 @@ const parent_screen = userN =>{
 			  	React.createElement("button",{ className: results,onClick:ev=>{
 					id_click()
 					results="c"
+					socket.emit("getMarks",userN)
 					chosen="results"
 					parent_screen(userN)
 				} },"Results")
@@ -370,10 +404,7 @@ React.createElement(
 		null,
 		"window.$ = window.jQuery = require('./js/libs/jquery-2.2.0.min.js');"
 	)
-),
-				React.createElement('div',{className:'attendance_triangle-left'}),
-				React.createElement('h1',{className:'attendance_year'},todaysDate.year),
-				React.createElement('div',{className:'attendance_triangle-right'}),
+)
 			)
 		)
 	}
@@ -399,7 +430,7 @@ React.createElement(
 								studentResults[ev.target.id][selectedResultMonth]={}
 							}
 							chosenSubject = ev.target.id
-							parent_screen()
+							parent_screen(userN2)
 						}
 						}),
 					React.createElement('br'),
@@ -432,7 +463,7 @@ React.createElement(
 						else{
 							studentResults[chosenSubject][selectedResultMonth]={}
 						}
-						parent_screen()
+						parent_screen(userN2)
 					}
 				}),
 				React.createElement('h2',{className:'results_month'},selectedResultMonth),
@@ -454,7 +485,7 @@ React.createElement(
 						else{
 							studentResults[chosenSubject][selectedResultMonth]={}
 						}
-						parent_screen()
+						parent_screen(userN2)
 					}
 				})
 			),
@@ -492,6 +523,23 @@ React.createElement(
 				})
 			)
 		)
+	}
+	else if(chosen == "accSet"){
+		return React.createElement('div',{className:"removeBox"},
+			React.createElement('div', {className: "popUp"},
+				React.createElement('div',{className:"smallpopUp"},
+					React.createElement('text',{className: 'account_h'}, 'Change Password'),
+					React.createElement('input',{type: 'text',className:'acc_form1',placeholder: 'Enter Old Password', onChange:ev=>{
+						oldPassT = ev.target.value
+					}}),
+					React.createElement('input',{type: 'text',className:'acc_form2',placeholder: 'Enter New Password', onChange:ev=>{
+						newPassT = ev.target.value
+					}}),
+					
+					React.createElement('button',{className: 'submitButton'}, 'Submit')
+					
+					)
+				))
 	}
 }
 const attColour=(t,i)=>{

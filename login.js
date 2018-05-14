@@ -104,6 +104,7 @@ const socket = io()
 socket.on("auth_admin",data=>
 {
   console.log("admin logged in")
+  pop=0
   admin_screen()
 
 })
@@ -111,12 +112,14 @@ socket.on("auth_admin",data=>
 socket.on("auth_parent",data=>
 {
   console.log(data," logged in")
+  pop=0
   parent_screen(data)
 
 })
 
 socket.on("auth_teacher",data=>
 {
+  pop=0
   teacher_screen()
 })
 
@@ -124,10 +127,6 @@ socket.on("auth_failed",data=>
 {
   pop=1
   login()
-})
-socket.on("auth_teacher",data=>
-{
-  admin_screen()
 })
 const login = ()=>{
 
@@ -145,6 +144,7 @@ const login = ()=>{
         React.createElement('div',{className:'loginBackground'}),
         React.createElement("img",{type:"image",id:"logo",src:"\\un.png"}),
         React.createElement("div",{ id: "login",style:{width:'40%'},className:'hCenter' },
+          
           React.createElement("h1",
             {
               className: 'heading hTextCenter',
@@ -154,6 +154,7 @@ const login = ()=>{
             userN=ev.target.value
             console.log(userN)
           } }),
+          myFunction(),
           React.createElement("input", { type: "password", id: "password", placeholder: "Password",className:'hCenter',onChange:ev=>{
             pass=ev.target.value
             console.log(pass)
@@ -311,4 +312,9 @@ const support = ()=>{
   ReactDOM.render(React.createElement(Support, null), document.getElementById("rahij"));
 }
 
+function myFunction(){
+  if(pop==1){
+    alert("Invalid login/username")
+  }
+}
 login()

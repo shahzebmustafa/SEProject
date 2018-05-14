@@ -17,6 +17,8 @@ const url="mongodb+srv://moeed:group_22@cluster0-c6wha.mongodb.net/group_22"
 mongoose.connect(url)
 
 
+//mongoose.connect('mongodb://localhost/usernames')
+
 let check=0
 let dict={}
 let clients=[]
@@ -72,6 +74,43 @@ let games=[]
 //ID.addAbsence("2001123","May-2018",24,()=>{
 //	console.log("donee")
 //})
+
+const getMarksByUsernamme = (username,id1)=>{
+	ID.getMarks(username,(err,id)=>{
+		if (err) {
+			console.log("Error")
+		}
+		else{
+			//console.log(username)
+			//console.log(id[0]['Marks'])
+			id=id[0]['Marks']
+			temp={}
+			for (var i=0;i<id.length;i++){
+				if (!(id[i]['subject'] in temp)){
+					temp[id[i]['subject']]={}
+				}
+				if (!(id[i]['month'] in temp[id[i]['subject']])){
+					temp[id[i]['subject']][id[i]['month']]={}
+				}
+				temp[id[i]['subject']][id[i]['month']][id[i]['name']]={'name':id[i]['name'],'total':id[i]['total'],'recieved':id[i]['obt'],'mean':id[i]['mean'],'remarks':'Good'}
+			}
+			//console.log(temp)
+			io.to(id1).emit("marksHere",temp)
+		}
+	})
+}
+const enterMarks = (username,marks,total1,mean1,compName,month1,subject1)=>{
+	ID.addMarks(username,{'subject':subject1,'month':month1,'name':compName,'obt':marks,'total':total1,'mean':mean1},()=>{
+		console.log("marks added")
+	})
+}
+//enterMarks("19100136","16","25","12","Quiz2","January 2018","Physics")
+//getMarksByUsernamme("19100136",34343)
+
+// enterMarks("19100136","18","20","15","Quiz","January 2018","Biology")
+// enterMarks("19100136","19","20","10","Quiz","January 2018","Art")
+
+
 
 const addAbsenceToUser = (username,month,date)=>{
 	ID.addAbsence(username,month,date,()=>{
@@ -135,7 +174,10 @@ const createNewAdmin = (username,password,name)=>{
 //ID.addID({'username':'rahij','password':'rahij','mode':'admin'}()=>{})
 //createNewParent("2001123","123","xyz","1","dda@hotmail.com")
 
-//createNewParent("sample","sample","xyz","1","dda@hotmail.com")
+// createNewParent("19100136","19100136","Zeeshan Sadiq","3","dda@hotmail.com")
+// createNewParent("19100078","19100078","Shahzeb Mustafa","3","dda@hotmail.com")
+// createNewParent("19100100","19100100","Zainab Agha","3","dda@hotmail.com")
+
 
 //createNewTeacher("200001","teacher","teacher","Ali","11C","teacher@gmail.com")
 //createNewUser("shahzeb","shahzeb","teacher","shahzeb","22"," "," ","shahzeb@gmail.com")
@@ -148,6 +190,11 @@ const createClass=(grade,classTeacher,rollnoArray)=>{
 
 }
 
+// createClass("1","Zainab",[])
+// createClass("2","Amber",[])
+// createClass("3","Sana",[])
+// createClass("4","Rashna",[])
+// createClass("5","Bizzah",[])
 
 
 //addStudentToClass("11C","Rahij Gillani","19100078")
@@ -206,6 +253,20 @@ const getStudentsbyClass = (id,grade)=>{
 		}
 	})
 }
+const getStudentsbyClassT = (id,grade)=>{
+	CLASS.getStudents(grade,function(err,rollnoArray){
+		if (err){
+			console.log('Error')
+		}
+		else{
+			rollnoArray=rollnoArray[0]
+			rollnoArray=rollnoArray['students']
+			//console.log(rollnoArray)
+
+			io.to(id).emit("stListTeacher",rollnoArray)
+		}
+	})
+}
 //tempList=[]
 const broadcastNotification = (grade,notification)=>{
 	CLASS.getStudents(grade,function(err,rollnoArray){
@@ -240,6 +301,21 @@ const getAllClasses = id=>{
 				temp.push(classes[i]['grade'])
 			}
 			io.to(id).emit("recieveClasses",temp)
+
+		}
+	})
+}
+const getAllClassesT = id=>{
+	CLASS.getClass(function(err,classes){
+		if(err){
+			console.log("ERROR")
+		}
+		else{
+			temp=[]
+			for (var i=0;i<classes.length;i++){
+				temp.push(classes[i]['grade'])
+			}
+			io.to(id).emit("recieveClassesTeacher",temp)
 
 		}
 	})
@@ -360,7 +436,20 @@ io.sockets.on('connection',socket=>{
 	})
 	socket.on("submit_att",data=>{
 		//socket.emit("submit_att",[students,attDate])
-		console.log("rcvd",data[0])
+		for (var i=0;i<data[0].length;i++){
+			if (data[0][i]['att']=='A'){
+				months=['January','February','March','April','May','June','July','August','September','October','November','December']
+				//console.log(Number(data[1].substring(3,2)))
+				addAbsenceToUser(data[0][i]['rNumber'],months[Number(data[3]+data[4])-1]+"-2018",Number(data[1]+data[2]))
+				//console.log(data[0][i]['rNumber'],months[Number(data[3]+data[4])]+"-2018",Number(data[0]+data[1]))
+			}
+		}
+		//console.log(data[0][0]['rNumber'],months[Number(data[3]+data[4])]+"-2018",Number(data[1]+data[2]))
+		//console.log(Number(data[1]+data[2]))
+		//console.log("done")
+		//console.log(Number(data[1].substring(3,2)))
+
+		//console.log("rcvd",data)
 		//////////////////////////////////////////////////////////////////////////////// 
 	})
 
@@ -368,8 +457,17 @@ io.sockets.on('connection',socket=>{
 		getAllClasses(socket.id)
 		
 	})
+
+	socket.on("getClassesTeacher",()=>{
+		getAllClassesT(socket.id)
+		
+	})
 	socket.on("giveStu",data=>{
 		getStudentsbyClass(socket.id,data)
+			
+	})
+	socket.on("giveStuTeacher",data=>{
+		getStudentsbyClassT(socket.id,data)
 			
 	})
 	socket.on("createStu",data=>{
@@ -385,6 +483,10 @@ io.sockets.on('connection',socket=>{
 	//socket.emit("getAtt",[month_name,year,userN])
 		
 	})
+	socket.on("getMarks",userN=>{
+		getMarksByUsernamme(userN,socket.id)
+	})
+
 })
 server.listen(8000,()=> console.log('Started...'))
 

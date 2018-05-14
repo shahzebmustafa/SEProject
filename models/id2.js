@@ -58,9 +58,16 @@ var idSchema=mongoose.Schema({
 	attendance:[{
 		month:String,
 		absences:[]
-	}]
+	}],
 
-	//result: {{}}
+	Marks:[{
+		subject:String,
+		month:String,
+		name:String,
+		obt:String,
+		total:String,
+		mean:String
+	}]
 })
 
 var ID = module.exports = mongoose.model('ID',idSchema);
@@ -104,4 +111,12 @@ module.exports.addAbsence = function(username,month1,date,callback){
 
 module.exports.getAtt = function(username,callback){
 	ID.find({'username':`${username}`},{'attendance':1,_id:0},callback)
+}
+
+module.exports.getMarks = function(username,callback){
+	ID.find({'username':`${username}`},{'Marks':1,_id:0},callback)
+}
+
+module.exports.addMarks = function(username,comp,callback){
+	ID.update({username:`${username}`},{$push:{Marks:comp}},callback)
 }
