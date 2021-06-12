@@ -13,7 +13,7 @@ var mongoose= require('mongoose')
 ID=require('./models/id2')
 CLASS=require('./models/class')
 
-const url="mongodb+srv://moeed:group_22@cluster0-c6wha.mongodb.net/group_22"
+const url=""
 mongoose.connect(url)
 
 
